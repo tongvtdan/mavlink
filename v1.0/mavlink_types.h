@@ -27,7 +27,7 @@
 #endif
 
 #define MAVLINK_MAX_EXTENDED_PAYLOAD_LEN (MAVLINK_MAX_EXTENDED_PACKET_LEN - MAVLINK_EXTENDED_HEADER_LEN - MAVLINK_NUM_NON_PAYLOAD_BYTES)
-
+#pragma anon_unions							// to support unions
 typedef struct param_union {
 	union {
 		float param_float;

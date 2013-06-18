@@ -56,7 +56,7 @@ typedef struct __mavlink_rc_channels_override_t
  * @param chan8_raw RC channel 8 value, in microseconds
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_rc_channels_override_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_rc_channels_override_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t target_system, uint8_t target_component, uint16_t chan1_raw, uint16_t chan2_raw, uint16_t chan3_raw, uint16_t chan4_raw, uint16_t chan5_raw, uint16_t chan6_raw, uint16_t chan7_raw, uint16_t chan8_raw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -111,7 +111,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_pack(uint8_t system_id, 
  * @param chan8_raw RC channel 8 value, in microseconds
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_rc_channels_override_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_rc_channels_override_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t target_system,uint8_t target_component,uint16_t chan1_raw,uint16_t chan2_raw,uint16_t chan3_raw,uint16_t chan4_raw,uint16_t chan5_raw,uint16_t chan6_raw,uint16_t chan7_raw,uint16_t chan8_raw)
 {
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_pack_chan(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param rc_channels_override C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_rc_channels_override_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rc_channels_override_t* rc_channels_override)
+static __inline uint16_t mavlink_msg_rc_channels_override_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rc_channels_override_t* rc_channels_override)
 {
 	return mavlink_msg_rc_channels_override_pack(system_id, component_id, msg, rc_channels_override->target_system, rc_channels_override->target_component, rc_channels_override->chan1_raw, rc_channels_override->chan2_raw, rc_channels_override->chan3_raw, rc_channels_override->chan4_raw, rc_channels_override->chan5_raw, rc_channels_override->chan6_raw, rc_channels_override->chan7_raw, rc_channels_override->chan8_raw);
 }
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_encode(uint8_t system_id
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_rc_channels_override_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint16_t chan1_raw, uint16_t chan2_raw, uint16_t chan3_raw, uint16_t chan4_raw, uint16_t chan5_raw, uint16_t chan6_raw, uint16_t chan7_raw, uint16_t chan8_raw)
+static __inline void mavlink_msg_rc_channels_override_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint16_t chan1_raw, uint16_t chan2_raw, uint16_t chan3_raw, uint16_t chan4_raw, uint16_t chan5_raw, uint16_t chan6_raw, uint16_t chan7_raw, uint16_t chan8_raw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[18];
@@ -222,7 +222,7 @@ static inline void mavlink_msg_rc_channels_override_send(mavlink_channel_t chan,
  *
  * @return System ID
  */
-static inline uint8_t mavlink_msg_rc_channels_override_get_target_system(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_rc_channels_override_get_target_system(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  16);
 }
@@ -232,7 +232,7 @@ static inline uint8_t mavlink_msg_rc_channels_override_get_target_system(const m
  *
  * @return Component ID
  */
-static inline uint8_t mavlink_msg_rc_channels_override_get_target_component(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_rc_channels_override_get_target_component(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  17);
 }
@@ -242,7 +242,7 @@ static inline uint8_t mavlink_msg_rc_channels_override_get_target_component(cons
  *
  * @return RC channel 1 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan1_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan1_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  0);
 }
@@ -252,7 +252,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan1_raw(const mavl
  *
  * @return RC channel 2 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan2_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan2_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  2);
 }
@@ -262,7 +262,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan2_raw(const mavl
  *
  * @return RC channel 3 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan3_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan3_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  4);
 }
@@ -272,7 +272,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan3_raw(const mavl
  *
  * @return RC channel 4 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan4_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan4_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  6);
 }
@@ -282,7 +282,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan4_raw(const mavl
  *
  * @return RC channel 5 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan5_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan5_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  8);
 }
@@ -292,7 +292,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan5_raw(const mavl
  *
  * @return RC channel 6 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan6_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan6_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  10);
 }
@@ -302,7 +302,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan6_raw(const mavl
  *
  * @return RC channel 7 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan7_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan7_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  12);
 }
@@ -312,7 +312,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan7_raw(const mavl
  *
  * @return RC channel 8 value, in microseconds
  */
-static inline uint16_t mavlink_msg_rc_channels_override_get_chan8_raw(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_rc_channels_override_get_chan8_raw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  14);
 }
@@ -323,7 +323,7 @@ static inline uint16_t mavlink_msg_rc_channels_override_get_chan8_raw(const mavl
  * @param msg The message to decode
  * @param rc_channels_override C-struct to decode the message contents into
  */
-static inline void mavlink_msg_rc_channels_override_decode(const mavlink_message_t* msg, mavlink_rc_channels_override_t* rc_channels_override)
+static __inline void mavlink_msg_rc_channels_override_decode(const mavlink_message_t* msg, mavlink_rc_channels_override_t* rc_channels_override)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	rc_channels_override->chan1_raw = mavlink_msg_rc_channels_override_get_chan1_raw(msg);

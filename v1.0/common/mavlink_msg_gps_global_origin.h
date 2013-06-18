@@ -35,7 +35,7 @@ typedef struct __mavlink_gps_global_origin_t
  * @param altitude Altitude(WGS84), expressed as * 1000
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps_global_origin_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_gps_global_origin_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       int32_t latitude, int32_t longitude, int32_t altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -69,7 +69,7 @@ static inline uint16_t mavlink_msg_gps_global_origin_pack(uint8_t system_id, uin
  * @param altitude Altitude(WGS84), expressed as * 1000
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_gps_global_origin_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_gps_global_origin_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           int32_t latitude,int32_t longitude,int32_t altitude)
 {
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_gps_global_origin_pack_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param gps_global_origin C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_gps_global_origin_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps_global_origin_t* gps_global_origin)
+static __inline uint16_t mavlink_msg_gps_global_origin_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_gps_global_origin_t* gps_global_origin)
 {
 	return mavlink_msg_gps_global_origin_pack(system_id, component_id, msg, gps_global_origin->latitude, gps_global_origin->longitude, gps_global_origin->altitude);
 }
@@ -116,7 +116,7 @@ static inline uint16_t mavlink_msg_gps_global_origin_encode(uint8_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_gps_global_origin_send(mavlink_channel_t chan, int32_t latitude, int32_t longitude, int32_t altitude)
+static __inline void mavlink_msg_gps_global_origin_send(mavlink_channel_t chan, int32_t latitude, int32_t longitude, int32_t altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[12];
@@ -145,7 +145,7 @@ static inline void mavlink_msg_gps_global_origin_send(mavlink_channel_t chan, in
  *
  * @return Latitude (WGS84), expressed as * 1E7
  */
-static inline int32_t mavlink_msg_gps_global_origin_get_latitude(const mavlink_message_t* msg)
+static __inline int32_t mavlink_msg_gps_global_origin_get_latitude(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int32_t(msg,  0);
 }
@@ -155,7 +155,7 @@ static inline int32_t mavlink_msg_gps_global_origin_get_latitude(const mavlink_m
  *
  * @return Longitude (WGS84), expressed as * 1E7
  */
-static inline int32_t mavlink_msg_gps_global_origin_get_longitude(const mavlink_message_t* msg)
+static __inline int32_t mavlink_msg_gps_global_origin_get_longitude(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int32_t(msg,  4);
 }
@@ -165,7 +165,7 @@ static inline int32_t mavlink_msg_gps_global_origin_get_longitude(const mavlink_
  *
  * @return Altitude(WGS84), expressed as * 1000
  */
-static inline int32_t mavlink_msg_gps_global_origin_get_altitude(const mavlink_message_t* msg)
+static __inline int32_t mavlink_msg_gps_global_origin_get_altitude(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int32_t(msg,  8);
 }
@@ -176,7 +176,7 @@ static inline int32_t mavlink_msg_gps_global_origin_get_altitude(const mavlink_m
  * @param msg The message to decode
  * @param gps_global_origin C-struct to decode the message contents into
  */
-static inline void mavlink_msg_gps_global_origin_decode(const mavlink_message_t* msg, mavlink_gps_global_origin_t* gps_global_origin)
+static __inline void mavlink_msg_gps_global_origin_decode(const mavlink_message_t* msg, mavlink_gps_global_origin_t* gps_global_origin)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	gps_global_origin->latitude = mavlink_msg_gps_global_origin_get_latitude(msg);

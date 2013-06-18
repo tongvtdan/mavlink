@@ -53,7 +53,7 @@ typedef struct __mavlink_setpoint_8dof_t
  * @param val8 Value 8
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_setpoint_8dof_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_setpoint_8dof_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t target_system, float val1, float val2, float val3, float val4, float val5, float val6, float val7, float val8)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -105,7 +105,7 @@ static inline uint16_t mavlink_msg_setpoint_8dof_pack(uint8_t system_id, uint8_t
  * @param val8 Value 8
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_setpoint_8dof_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_setpoint_8dof_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t target_system,float val1,float val2,float val3,float val4,float val5,float val6,float val7,float val8)
 {
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_setpoint_8dof_pack_chan(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param setpoint_8dof C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_setpoint_8dof_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_setpoint_8dof_t* setpoint_8dof)
+static __inline uint16_t mavlink_msg_setpoint_8dof_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_setpoint_8dof_t* setpoint_8dof)
 {
 	return mavlink_msg_setpoint_8dof_pack(system_id, component_id, msg, setpoint_8dof->target_system, setpoint_8dof->val1, setpoint_8dof->val2, setpoint_8dof->val3, setpoint_8dof->val4, setpoint_8dof->val5, setpoint_8dof->val6, setpoint_8dof->val7, setpoint_8dof->val8);
 }
@@ -170,7 +170,7 @@ static inline uint16_t mavlink_msg_setpoint_8dof_encode(uint8_t system_id, uint8
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_setpoint_8dof_send(mavlink_channel_t chan, uint8_t target_system, float val1, float val2, float val3, float val4, float val5, float val6, float val7, float val8)
+static __inline void mavlink_msg_setpoint_8dof_send(mavlink_channel_t chan, uint8_t target_system, float val1, float val2, float val3, float val4, float val5, float val6, float val7, float val8)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[33];
@@ -211,7 +211,7 @@ static inline void mavlink_msg_setpoint_8dof_send(mavlink_channel_t chan, uint8_
  *
  * @return System ID
  */
-static inline uint8_t mavlink_msg_setpoint_8dof_get_target_system(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_setpoint_8dof_get_target_system(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  32);
 }
@@ -221,7 +221,7 @@ static inline uint8_t mavlink_msg_setpoint_8dof_get_target_system(const mavlink_
  *
  * @return Value 1
  */
-static inline float mavlink_msg_setpoint_8dof_get_val1(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val1(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  0);
 }
@@ -231,7 +231,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val1(const mavlink_message_t* 
  *
  * @return Value 2
  */
-static inline float mavlink_msg_setpoint_8dof_get_val2(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val2(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
@@ -241,7 +241,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val2(const mavlink_message_t* 
  *
  * @return Value 3
  */
-static inline float mavlink_msg_setpoint_8dof_get_val3(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val3(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -251,7 +251,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val3(const mavlink_message_t* 
  *
  * @return Value 4
  */
-static inline float mavlink_msg_setpoint_8dof_get_val4(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val4(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -261,7 +261,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val4(const mavlink_message_t* 
  *
  * @return Value 5
  */
-static inline float mavlink_msg_setpoint_8dof_get_val5(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val5(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -271,7 +271,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val5(const mavlink_message_t* 
  *
  * @return Value 6
  */
-static inline float mavlink_msg_setpoint_8dof_get_val6(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val6(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  20);
 }
@@ -281,7 +281,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val6(const mavlink_message_t* 
  *
  * @return Value 7
  */
-static inline float mavlink_msg_setpoint_8dof_get_val7(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val7(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  24);
 }
@@ -291,7 +291,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val7(const mavlink_message_t* 
  *
  * @return Value 8
  */
-static inline float mavlink_msg_setpoint_8dof_get_val8(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_8dof_get_val8(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  28);
 }
@@ -302,7 +302,7 @@ static inline float mavlink_msg_setpoint_8dof_get_val8(const mavlink_message_t* 
  * @param msg The message to decode
  * @param setpoint_8dof C-struct to decode the message contents into
  */
-static inline void mavlink_msg_setpoint_8dof_decode(const mavlink_message_t* msg, mavlink_setpoint_8dof_t* setpoint_8dof)
+static __inline void mavlink_msg_setpoint_8dof_decode(const mavlink_message_t* msg, mavlink_setpoint_8dof_t* setpoint_8dof)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	setpoint_8dof->val1 = mavlink_msg_setpoint_8dof_get_val1(msg);

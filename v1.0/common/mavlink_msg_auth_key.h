@@ -29,7 +29,7 @@ typedef struct __mavlink_auth_key_t
  * @param key key
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_auth_key_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_auth_key_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       const char *key)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -57,7 +57,7 @@ static inline uint16_t mavlink_msg_auth_key_pack(uint8_t system_id, uint8_t comp
  * @param key key
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_auth_key_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_auth_key_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           const char *key)
 {
@@ -85,7 +85,7 @@ static inline uint16_t mavlink_msg_auth_key_pack_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param auth_key C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_auth_key_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
+static __inline uint16_t mavlink_msg_auth_key_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_auth_key_t* auth_key)
 {
 	return mavlink_msg_auth_key_pack(system_id, component_id, msg, auth_key->key);
 }
@@ -98,7 +98,7 @@ static inline uint16_t mavlink_msg_auth_key_encode(uint8_t system_id, uint8_t co
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_auth_key_send(mavlink_channel_t chan, const char *key)
+static __inline void mavlink_msg_auth_key_send(mavlink_channel_t chan, const char *key)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[32];
@@ -123,7 +123,7 @@ static inline void mavlink_msg_auth_key_send(mavlink_channel_t chan, const char 
  *
  * @return key
  */
-static inline uint16_t mavlink_msg_auth_key_get_key(const mavlink_message_t* msg, char *key)
+static __inline uint16_t mavlink_msg_auth_key_get_key(const mavlink_message_t* msg, char *key)
 {
 	return _MAV_RETURN_char_array(msg, key, 32,  0);
 }
@@ -134,7 +134,7 @@ static inline uint16_t mavlink_msg_auth_key_get_key(const mavlink_message_t* msg
  * @param msg The message to decode
  * @param auth_key C-struct to decode the message contents into
  */
-static inline void mavlink_msg_auth_key_decode(const mavlink_message_t* msg, mavlink_auth_key_t* auth_key)
+static __inline void mavlink_msg_auth_key_decode(const mavlink_message_t* msg, mavlink_auth_key_t* auth_key)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	mavlink_msg_auth_key_get_key(msg, auth_key->key);

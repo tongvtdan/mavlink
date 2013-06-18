@@ -38,7 +38,7 @@ typedef struct __mavlink_pid_config_t
  * @param kd_factor Specify kd factor of motor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_pid_config_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_pid_config_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t motor_name, uint8_t kp_factor, uint8_t ki_factor, uint8_t kd_factor)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_pid_config_pack(uint8_t system_id, uint8_t co
  * @param kd_factor Specify kd factor of motor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_pid_config_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_pid_config_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t motor_name,uint8_t kp_factor,uint8_t ki_factor,uint8_t kd_factor)
 {
@@ -109,7 +109,7 @@ static inline uint16_t mavlink_msg_pid_config_pack_chan(uint8_t system_id, uint8
  * @param msg The MAVLink message to compress the data into
  * @param pid_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_pid_config_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_pid_config_t* pid_config)
+static __inline uint16_t mavlink_msg_pid_config_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_pid_config_t* pid_config)
 {
 	return mavlink_msg_pid_config_pack(system_id, component_id, msg, pid_config->motor_name, pid_config->kp_factor, pid_config->ki_factor, pid_config->kd_factor);
 }
@@ -125,7 +125,7 @@ static inline uint16_t mavlink_msg_pid_config_encode(uint8_t system_id, uint8_t 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_pid_config_send(mavlink_channel_t chan, uint8_t motor_name, uint8_t kp_factor, uint8_t ki_factor, uint8_t kd_factor)
+static __inline void mavlink_msg_pid_config_send(mavlink_channel_t chan, uint8_t motor_name, uint8_t kp_factor, uint8_t ki_factor, uint8_t kd_factor)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[4];
@@ -156,7 +156,7 @@ static inline void mavlink_msg_pid_config_send(mavlink_channel_t chan, uint8_t m
  *
  * @return Name of motor: ROLL_MOTOR, PITCH_MOTOR, YAW_MOTOR
  */
-static inline uint8_t mavlink_msg_pid_config_get_motor_name(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_pid_config_get_motor_name(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  0);
 }
@@ -166,7 +166,7 @@ static inline uint8_t mavlink_msg_pid_config_get_motor_name(const mavlink_messag
  *
  * @return Specify kp factor of motor
  */
-static inline uint8_t mavlink_msg_pid_config_get_kp_factor(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_pid_config_get_kp_factor(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  1);
 }
@@ -176,7 +176,7 @@ static inline uint8_t mavlink_msg_pid_config_get_kp_factor(const mavlink_message
  *
  * @return Specify ki factor of motor
  */
-static inline uint8_t mavlink_msg_pid_config_get_ki_factor(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_pid_config_get_ki_factor(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  2);
 }
@@ -186,7 +186,7 @@ static inline uint8_t mavlink_msg_pid_config_get_ki_factor(const mavlink_message
  *
  * @return Specify kd factor of motor
  */
-static inline uint8_t mavlink_msg_pid_config_get_kd_factor(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_pid_config_get_kd_factor(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  3);
 }
@@ -197,7 +197,7 @@ static inline uint8_t mavlink_msg_pid_config_get_kd_factor(const mavlink_message
  * @param msg The message to decode
  * @param pid_config C-struct to decode the message contents into
  */
-static inline void mavlink_msg_pid_config_decode(const mavlink_message_t* msg, mavlink_pid_config_t* pid_config)
+static __inline void mavlink_msg_pid_config_decode(const mavlink_message_t* msg, mavlink_pid_config_t* pid_config)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	pid_config->motor_name = mavlink_msg_pid_config_get_motor_name(msg);
