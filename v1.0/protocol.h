@@ -37,7 +37,7 @@
 #ifdef MAVLINK_SEPARATE_HELPERS
 #define MAVLINK_HELPER
 #else
-#define MAVLINK_HELPER static inline
+#define MAVLINK_HELPER static __inline
 #include "mavlink_helpers.h"
 #endif // MAVLINK_SEPARATE_HELPERS
 
@@ -76,25 +76,25 @@ MAVLINK_HELPER void _mavlink_resend_uart(mavlink_channel_t chan, const mavlink_m
 /**
  * @brief Get the required buffer size for this message
  */
-static inline uint16_t mavlink_msg_get_send_buffer_length(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_get_send_buffer_length(const mavlink_message_t* msg)
 {
 	return msg->len + MAVLINK_NUM_NON_PAYLOAD_BYTES;
 }
 
 #if MAVLINK_NEED_BYTE_SWAP
-static inline void byte_swap_2(char *dst, const char *src)
+static ____inline void byte_swap_2(char *dst, const char *src)
 {
 	dst[0] = src[1];
 	dst[1] = src[0];
 }
-static inline void byte_swap_4(char *dst, const char *src)
+static ____inline void byte_swap_4(char *dst, const char *src)
 {
 	dst[0] = src[3];
 	dst[1] = src[2];
 	dst[2] = src[1];
 	dst[3] = src[0];
 }
-static inline void byte_swap_8(char *dst, const char *src)
+static ____inline void byte_swap_8(char *dst, const char *src)
 {
 	dst[0] = src[7];
 	dst[1] = src[6];
@@ -106,19 +106,19 @@ static inline void byte_swap_8(char *dst, const char *src)
 	dst[7] = src[0];
 }
 #elif !MAVLINK_ALIGNED_FIELDS
-static inline void byte_copy_2(char *dst, const char *src)
+static ____inline void byte_copy_2(char *dst, const char *src)
 {
 	dst[0] = src[0];
 	dst[1] = src[1];
 }
-static inline void byte_copy_4(char *dst, const char *src)
+static ____inline void byte_copy_4(char *dst, const char *src)
 {
 	dst[0] = src[0];
 	dst[1] = src[1];
 	dst[2] = src[2];
 	dst[3] = src[3];
 }
-static inline void byte_copy_8(char *dst, const char *src)
+static ____inline void byte_copy_8(char *dst, const char *src)
 {
 	memcpy(dst, src, 8);
 }
@@ -172,7 +172,7 @@ static void mav_array_memcpy(void *dest, const void *src, size_t n)
 /*
  * Place a char array into a buffer
  */
-static inline void _mav_put_char_array(char *buf, uint8_t wire_offset, const char *b, uint8_t array_length)
+static __inline void _mav_put_char_array(char *buf, uint8_t wire_offset, const char *b, uint8_t array_length)
 {
 	mav_array_memcpy(&buf[wire_offset], b, array_length);
 
@@ -181,7 +181,7 @@ static inline void _mav_put_char_array(char *buf, uint8_t wire_offset, const cha
 /*
  * Place a uint8_t array into a buffer
  */
-static inline void _mav_put_uint8_t_array(char *buf, uint8_t wire_offset, const uint8_t *b, uint8_t array_length)
+static __inline void _mav_put_uint8_t_array(char *buf, uint8_t wire_offset, const uint8_t *b, uint8_t array_length)
 {
 	mav_array_memcpy(&buf[wire_offset], b, array_length);
 
@@ -190,7 +190,7 @@ static inline void _mav_put_uint8_t_array(char *buf, uint8_t wire_offset, const 
 /*
  * Place a int8_t array into a buffer
  */
-static inline void _mav_put_int8_t_array(char *buf, uint8_t wire_offset, const int8_t *b, uint8_t array_length)
+static __inline void _mav_put_int8_t_array(char *buf, uint8_t wire_offset, const int8_t *b, uint8_t array_length)
 {
 	mav_array_memcpy(&buf[wire_offset], b, array_length);
 
@@ -198,7 +198,7 @@ static inline void _mav_put_int8_t_array(char *buf, uint8_t wire_offset, const i
 
 #if MAVLINK_NEED_BYTE_SWAP
 #define _MAV_PUT_ARRAY(TYPE, V) \
-static inline void _mav_put_ ## TYPE ##_array(char *buf, uint8_t wire_offset, const TYPE *b, uint8_t array_length) \
+static ____inline void _mav_put_ ## TYPE ##_array(char *buf, uint8_t wire_offset, const TYPE *b, uint8_t array_length) \
 { \
 	if (b == NULL) { \
 		memset(&buf[wire_offset], 0, array_length*sizeof(TYPE)); \
@@ -211,7 +211,7 @@ static inline void _mav_put_ ## TYPE ##_array(char *buf, uint8_t wire_offset, co
 }
 #else
 #define _MAV_PUT_ARRAY(TYPE, V)					\
-static inline void _mav_put_ ## TYPE ##_array(char *buf, uint8_t wire_offset, const TYPE *b, uint8_t array_length) \
+static __inline void _mav_put_ ## TYPE ##_array(char *buf, uint8_t wire_offset, const TYPE *b, uint8_t array_length) \
 { \
 	mav_array_memcpy(&buf[wire_offset], b, array_length*sizeof(TYPE)); \
 }
@@ -232,7 +232,7 @@ _MAV_PUT_ARRAY(double,   d)
 
 #if MAVLINK_NEED_BYTE_SWAP
 #define _MAV_MSG_RETURN_TYPE(TYPE, SIZE) \
-static inline TYPE _MAV_RETURN_## TYPE(const mavlink_message_t *msg, uint8_t ofs) \
+static __inline TYPE _MAV_RETURN_## TYPE(const mavlink_message_t *msg, uint8_t ofs) \
 { TYPE r; byte_swap_## SIZE((char*)&r, &_MAV_PAYLOAD(msg)[ofs]); return r; }
 
 _MAV_MSG_RETURN_TYPE(uint16_t, 2)
@@ -246,7 +246,7 @@ _MAV_MSG_RETURN_TYPE(double,   8)
 
 #elif !MAVLINK_ALIGNED_FIELDS
 #define _MAV_MSG_RETURN_TYPE(TYPE, SIZE) \
-static inline TYPE _MAV_RETURN_## TYPE(const mavlink_message_t *msg, uint8_t ofs) \
+static __inline TYPE _MAV_RETURN_## TYPE(const mavlink_message_t *msg, uint8_t ofs) \
 { TYPE r; byte_copy_## SIZE((char*)&r, &_MAV_PAYLOAD(msg)[ofs]); return r; }
 
 _MAV_MSG_RETURN_TYPE(uint16_t, 2)
@@ -259,7 +259,7 @@ _MAV_MSG_RETURN_TYPE(float,    4)
 _MAV_MSG_RETURN_TYPE(double,   8)
 #else // nicely aligned, no swap
 #define _MAV_MSG_RETURN_TYPE(TYPE) \
-static inline TYPE _MAV_RETURN_## TYPE(const mavlink_message_t *msg, uint8_t ofs) \
+static __inline TYPE _MAV_RETURN_## TYPE(const mavlink_message_t *msg, uint8_t ofs) \
 { return *(const TYPE *)(&_MAV_PAYLOAD(msg)[ofs]);}
 
 _MAV_MSG_RETURN_TYPE(uint16_t)
@@ -272,21 +272,21 @@ _MAV_MSG_RETURN_TYPE(float)
 _MAV_MSG_RETURN_TYPE(double)
 #endif // MAVLINK_NEED_BYTE_SWAP
 
-static inline uint16_t _MAV_RETURN_char_array(const mavlink_message_t *msg, char *value, 
+static __inline uint16_t _MAV_RETURN_char_array(const mavlink_message_t *msg, char *value, 
 						     uint8_t array_length, uint8_t wire_offset)
 {
 	memcpy(value, &_MAV_PAYLOAD(msg)[wire_offset], array_length);
 	return array_length;
 }
 
-static inline uint16_t _MAV_RETURN_uint8_t_array(const mavlink_message_t *msg, uint8_t *value, 
+static __inline uint16_t _MAV_RETURN_uint8_t_array(const mavlink_message_t *msg, uint8_t *value, 
 							uint8_t array_length, uint8_t wire_offset)
 {
 	memcpy(value, &_MAV_PAYLOAD(msg)[wire_offset], array_length);
 	return array_length;
 }
 
-static inline uint16_t _MAV_RETURN_int8_t_array(const mavlink_message_t *msg, int8_t *value, 
+static __inline uint16_t _MAV_RETURN_int8_t_array(const mavlink_message_t *msg, int8_t *value, 
 						       uint8_t array_length, uint8_t wire_offset)
 {
 	memcpy(value, &_MAV_PAYLOAD(msg)[wire_offset], array_length);
@@ -295,7 +295,7 @@ static inline uint16_t _MAV_RETURN_int8_t_array(const mavlink_message_t *msg, in
 
 #if MAVLINK_NEED_BYTE_SWAP
 #define _MAV_RETURN_ARRAY(TYPE, V) \
-static inline uint16_t _MAV_RETURN_## TYPE ##_array(const mavlink_message_t *msg, TYPE *value, \
+static __inline uint16_t _MAV_RETURN_## TYPE ##_array(const mavlink_message_t *msg, TYPE *value, \
 							 uint8_t array_length, uint8_t wire_offset) \
 { \
 	uint16_t i; \
@@ -306,7 +306,7 @@ static inline uint16_t _MAV_RETURN_## TYPE ##_array(const mavlink_message_t *msg
 }
 #else
 #define _MAV_RETURN_ARRAY(TYPE, V)					\
-static inline uint16_t _MAV_RETURN_## TYPE ##_array(const mavlink_message_t *msg, TYPE *value, \
+static __inline uint16_t _MAV_RETURN_## TYPE ##_array(const mavlink_message_t *msg, TYPE *value, \
 							 uint8_t array_length, uint8_t wire_offset) \
 { \
 	memcpy(value, &_MAV_PAYLOAD(msg)[wire_offset], array_length*sizeof(TYPE)); \

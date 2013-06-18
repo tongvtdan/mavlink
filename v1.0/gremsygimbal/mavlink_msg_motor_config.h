@@ -41,7 +41,7 @@ typedef struct __mavlink_motor_config_t
  * @param down_limit Specify down limit of motor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_motor_config_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_motor_config_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t motor_name, uint8_t power, uint8_t poles, uint8_t up_limit, uint8_t down_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -81,7 +81,7 @@ static inline uint16_t mavlink_msg_motor_config_pack(uint8_t system_id, uint8_t 
  * @param down_limit Specify down limit of motor
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_motor_config_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_motor_config_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t motor_name,uint8_t power,uint8_t poles,uint8_t up_limit,uint8_t down_limit)
 {
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_motor_config_pack_chan(uint8_t system_id, uin
  * @param msg The MAVLink message to compress the data into
  * @param motor_config C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_motor_config_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_motor_config_t* motor_config)
+static __inline uint16_t mavlink_msg_motor_config_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_motor_config_t* motor_config)
 {
 	return mavlink_msg_motor_config_pack(system_id, component_id, msg, motor_config->motor_name, motor_config->power, motor_config->poles, motor_config->up_limit, motor_config->down_limit);
 }
@@ -134,7 +134,7 @@ static inline uint16_t mavlink_msg_motor_config_encode(uint8_t system_id, uint8_
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_motor_config_send(mavlink_channel_t chan, uint8_t motor_name, uint8_t power, uint8_t poles, uint8_t up_limit, uint8_t down_limit)
+static __inline void mavlink_msg_motor_config_send(mavlink_channel_t chan, uint8_t motor_name, uint8_t power, uint8_t poles, uint8_t up_limit, uint8_t down_limit)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[5];
@@ -167,7 +167,7 @@ static inline void mavlink_msg_motor_config_send(mavlink_channel_t chan, uint8_t
  *
  * @return Name of motor: ROLL_MOTOR, PITCH_MOTOR, YAW_MOTOR
  */
-static inline uint8_t mavlink_msg_motor_config_get_motor_name(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_motor_config_get_motor_name(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  0);
 }
@@ -177,7 +177,7 @@ static inline uint8_t mavlink_msg_motor_config_get_motor_name(const mavlink_mess
  *
  * @return Specify maximun power of motor
  */
-static inline uint8_t mavlink_msg_motor_config_get_power(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_motor_config_get_power(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  1);
 }
@@ -187,7 +187,7 @@ static inline uint8_t mavlink_msg_motor_config_get_power(const mavlink_message_t
  *
  * @return Specify number of poles of motor
  */
-static inline uint8_t mavlink_msg_motor_config_get_poles(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_motor_config_get_poles(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  2);
 }
@@ -197,7 +197,7 @@ static inline uint8_t mavlink_msg_motor_config_get_poles(const mavlink_message_t
  *
  * @return Specify up limit of motor
  */
-static inline uint8_t mavlink_msg_motor_config_get_up_limit(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_motor_config_get_up_limit(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  3);
 }
@@ -207,7 +207,7 @@ static inline uint8_t mavlink_msg_motor_config_get_up_limit(const mavlink_messag
  *
  * @return Specify down limit of motor
  */
-static inline uint8_t mavlink_msg_motor_config_get_down_limit(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_motor_config_get_down_limit(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  4);
 }
@@ -218,7 +218,7 @@ static inline uint8_t mavlink_msg_motor_config_get_down_limit(const mavlink_mess
  * @param msg The message to decode
  * @param motor_config C-struct to decode the message contents into
  */
-static inline void mavlink_msg_motor_config_decode(const mavlink_message_t* msg, mavlink_motor_config_t* motor_config)
+static __inline void mavlink_msg_motor_config_decode(const mavlink_message_t* msg, mavlink_motor_config_t* motor_config)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	motor_config->motor_name = mavlink_msg_motor_config_get_motor_name(msg);

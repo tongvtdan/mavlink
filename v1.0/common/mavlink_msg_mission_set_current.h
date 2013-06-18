@@ -35,7 +35,7 @@ typedef struct __mavlink_mission_set_current_t
  * @param seq Sequence
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_set_current_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_mission_set_current_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t target_system, uint8_t target_component, uint16_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -69,7 +69,7 @@ static inline uint16_t mavlink_msg_mission_set_current_pack(uint8_t system_id, u
  * @param seq Sequence
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_set_current_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_mission_set_current_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t target_system,uint8_t target_component,uint16_t seq)
 {
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_mission_set_current_pack_chan(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param mission_set_current C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_set_current_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_set_current_t* mission_set_current)
+static __inline uint16_t mavlink_msg_mission_set_current_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_set_current_t* mission_set_current)
 {
 	return mavlink_msg_mission_set_current_pack(system_id, component_id, msg, mission_set_current->target_system, mission_set_current->target_component, mission_set_current->seq);
 }
@@ -116,7 +116,7 @@ static inline uint16_t mavlink_msg_mission_set_current_encode(uint8_t system_id,
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_mission_set_current_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint16_t seq)
+static __inline void mavlink_msg_mission_set_current_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint16_t seq)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[4];
@@ -145,7 +145,7 @@ static inline void mavlink_msg_mission_set_current_send(mavlink_channel_t chan, 
  *
  * @return System ID
  */
-static inline uint8_t mavlink_msg_mission_set_current_get_target_system(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_mission_set_current_get_target_system(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  2);
 }
@@ -155,7 +155,7 @@ static inline uint8_t mavlink_msg_mission_set_current_get_target_system(const ma
  *
  * @return Component ID
  */
-static inline uint8_t mavlink_msg_mission_set_current_get_target_component(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_mission_set_current_get_target_component(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  3);
 }
@@ -165,7 +165,7 @@ static inline uint8_t mavlink_msg_mission_set_current_get_target_component(const
  *
  * @return Sequence
  */
-static inline uint16_t mavlink_msg_mission_set_current_get_seq(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_mission_set_current_get_seq(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  0);
 }
@@ -176,7 +176,7 @@ static inline uint16_t mavlink_msg_mission_set_current_get_seq(const mavlink_mes
  * @param msg The message to decode
  * @param mission_set_current C-struct to decode the message contents into
  */
-static inline void mavlink_msg_mission_set_current_decode(const mavlink_message_t* msg, mavlink_mission_set_current_t* mission_set_current)
+static __inline void mavlink_msg_mission_set_current_decode(const mavlink_message_t* msg, mavlink_mission_set_current_t* mission_set_current)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	mission_set_current->seq = mavlink_msg_mission_set_current_get_seq(msg);

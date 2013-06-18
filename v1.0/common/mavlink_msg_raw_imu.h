@@ -56,7 +56,7 @@ typedef struct __mavlink_raw_imu_t
  * @param zmag Z Magnetic field (raw)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -111,7 +111,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack(uint8_t system_id, uint8_t compo
  * @param zmag Z Magnetic field (raw)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t time_usec,int16_t xacc,int16_t yacc,int16_t zacc,int16_t xgyro,int16_t ygyro,int16_t zgyro,int16_t xmag,int16_t ymag,int16_t zmag)
 {
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_raw_imu_pack_chan(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param raw_imu C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_raw_imu_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_raw_imu_t* raw_imu)
+static __inline uint16_t mavlink_msg_raw_imu_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_raw_imu_t* raw_imu)
 {
 	return mavlink_msg_raw_imu_pack(system_id, component_id, msg, raw_imu->time_usec, raw_imu->xacc, raw_imu->yacc, raw_imu->zacc, raw_imu->xgyro, raw_imu->ygyro, raw_imu->zgyro, raw_imu->xmag, raw_imu->ymag, raw_imu->zmag);
 }
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_raw_imu_encode(uint8_t system_id, uint8_t com
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
+static __inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t time_usec, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro, int16_t ygyro, int16_t zgyro, int16_t xmag, int16_t ymag, int16_t zmag)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[26];
@@ -222,7 +222,7 @@ static inline void mavlink_msg_raw_imu_send(mavlink_channel_t chan, uint64_t tim
  *
  * @return Timestamp (microseconds since UNIX epoch or microseconds since system boot)
  */
-static inline uint64_t mavlink_msg_raw_imu_get_time_usec(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_raw_imu_get_time_usec(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -232,7 +232,7 @@ static inline uint64_t mavlink_msg_raw_imu_get_time_usec(const mavlink_message_t
  *
  * @return X acceleration (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_xacc(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_xacc(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  8);
 }
@@ -242,7 +242,7 @@ static inline int16_t mavlink_msg_raw_imu_get_xacc(const mavlink_message_t* msg)
  *
  * @return Y acceleration (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_yacc(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_yacc(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  10);
 }
@@ -252,7 +252,7 @@ static inline int16_t mavlink_msg_raw_imu_get_yacc(const mavlink_message_t* msg)
  *
  * @return Z acceleration (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_zacc(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_zacc(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  12);
 }
@@ -262,7 +262,7 @@ static inline int16_t mavlink_msg_raw_imu_get_zacc(const mavlink_message_t* msg)
  *
  * @return Angular speed around X axis (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_xgyro(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_xgyro(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  14);
 }
@@ -272,7 +272,7 @@ static inline int16_t mavlink_msg_raw_imu_get_xgyro(const mavlink_message_t* msg
  *
  * @return Angular speed around Y axis (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_ygyro(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_ygyro(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  16);
 }
@@ -282,7 +282,7 @@ static inline int16_t mavlink_msg_raw_imu_get_ygyro(const mavlink_message_t* msg
  *
  * @return Angular speed around Z axis (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_zgyro(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_zgyro(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  18);
 }
@@ -292,7 +292,7 @@ static inline int16_t mavlink_msg_raw_imu_get_zgyro(const mavlink_message_t* msg
  *
  * @return X Magnetic field (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_xmag(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_xmag(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  20);
 }
@@ -302,7 +302,7 @@ static inline int16_t mavlink_msg_raw_imu_get_xmag(const mavlink_message_t* msg)
  *
  * @return Y Magnetic field (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_ymag(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_ymag(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  22);
 }
@@ -312,7 +312,7 @@ static inline int16_t mavlink_msg_raw_imu_get_ymag(const mavlink_message_t* msg)
  *
  * @return Z Magnetic field (raw)
  */
-static inline int16_t mavlink_msg_raw_imu_get_zmag(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_raw_imu_get_zmag(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  24);
 }
@@ -323,7 +323,7 @@ static inline int16_t mavlink_msg_raw_imu_get_zmag(const mavlink_message_t* msg)
  * @param msg The message to decode
  * @param raw_imu C-struct to decode the message contents into
  */
-static inline void mavlink_msg_raw_imu_decode(const mavlink_message_t* msg, mavlink_raw_imu_t* raw_imu)
+static __inline void mavlink_msg_raw_imu_decode(const mavlink_message_t* msg, mavlink_raw_imu_t* raw_imu)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	raw_imu->time_usec = mavlink_msg_raw_imu_get_time_usec(msg);
