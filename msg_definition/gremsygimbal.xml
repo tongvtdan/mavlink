@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<mavlink>
+     <include>common.xml</include>
+     <enums>
+          <enum name="MOTOR_ENUM">
+               <description>Indicate names of motor</description>
+               <entry value="0" name="ROLL_MOTOR">
+                    <description>Roll Motor</description>
+               </entry>
+			   <entry value="1" name="PITCH_MOTOR">
+                    <description>Pitch Motor</description>
+               </entry>
+			   <entry value="2" name="YAW_MOTOR">
+                    <description>Yaw Motor</description>
+               </entry>
+          </enum>
+     </enums>  
+	 <!-- MESSAGE IDs 150 - 240: Space for custom messages in individual projectname_messages.xml files -->
+     <messages>
+          <message id="152" name="MOTOR_CONFIG">
+               <description>Config parameters of Motor: Power, Number of poles, Up Limit, Down Limit</description>
+               <field type="uint8_t" name="motor_name">Name of motor: ROLL_MOTOR, PITCH_MOTOR, YAW_MOTOR</field>
+               <field type="uint8_t" name="power">Specify maximun power of motor</field>
+               <field type="uint8_t" name="poles">Specify number of poles of motor</field>
+			   <field type="uint8_t" name="up_limit">Specify up limit of motor</field>
+			   <field type="uint8_t" name="down_limit">Specify down limit of motor</field>		   
+          </message>
+		  
+		  <message id="153" name="PID_CONFIG">
+			   <description>Config parameters of Motor: Power, Number of poles, Up Limit, Down Limit</description>
+               <field type="uint8_t" name="motor_name">Name of motor: ROLL_MOTOR, PITCH_MOTOR, YAW_MOTOR</field>
+               <field type="uint8_t" name="kp_factor">Specify kp factor of motor</field>
+               <field type="uint8_t" name="ki_factor">Specify ki factor of motor</field>
+			   <field type="uint8_t" name="kd_factor">Specify kd factor of motor</field>
+		  </message>
+        
+     </messages>
+</mavlink>
