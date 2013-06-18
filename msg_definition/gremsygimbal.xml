@@ -2,24 +2,37 @@
 <mavlink>
      <include>common.xml</include>
      <enums>
-          <enum name="TEST_ENUM">
-               <description>Indicates the severity level, generally used for status messages to indicate their relative urgency. Based on RFC-5424 using expanded definitions at: http://www.kiwisyslog.com/kb/info:-syslog-message-levels/.</description>
-               <entry value="0" name="MAV_EMERGENCY">
-                    <description>System is unusable. This is a "panic" condition.</description>
+          <enum name="MOTOR_ENUM">
+               <description>Indicate names of motor</description>
+               <entry value="0" name="ROLL_MOTOR">
+                    <description>Roll Motor</description>
                </entry>
-
+			   <entry value="1" name="PITCH_MOTOR">
+                    <description>Pitch Motor</description>
+               </entry>
+			   <entry value="2" name="YAW_MOTOR">
+                    <description>Yaw Motor</description>
+               </entry>
           </enum>
-     </enums>
+     </enums>  
+	 <!-- MESSAGE IDs 150 - 240: Space for custom messages in individual projectname_messages.xml files -->
      <messages>
-          <message id="150" name="TEST_COMMAND">
-               <description>The heartbeat message shows that a system is present and responding. The type of the MAV and Autopilot hardware allow the receiving system to treat further messages from this system appropriate (e.g. by laying out the user interface based on the autopilot).</description>
-               <field type="uint8_t" name="type">Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)</field>
-               <field type="uint8_t" name="autopilot">Autopilot type / class. defined in MAV_AUTOPILOT ENUM</field>
-               <field type="uint8_t" name="base_mode">System mode bitfield, see MAV_MODE_FLAGS ENUM in mavlink/include/mavlink_types.h</field>
-               <field type="uint32_t" name="custom_mode">A bitfield for use for autopilot-specific flags.</field>
-               <field type="uint8_t" name="system_status">System status flag, see MAV_STATE ENUM</field>
-               <field type="uint8_t_mavlink_version" name="mavlink_version">MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version</field>
+          <message id="152" name="MOTOR_CONFIG">
+               <description>Config parameters of Motor: Power, Number of poles, Up Limit, Down Limit</description>
+               <field type="uint8_t" name="motor_name">Name of motor: ROLL_MOTOR, PITCH_MOTOR, YAW_MOTOR</field>
+               <field type="uint8_t" name="power">Specify maximun power of motor</field>
+               <field type="uint8_t" name="poles">Specify number of poles of motor</field>
+			   <field type="uint8_t" name="up_limit">Specify up limit of motor</field>
+			   <field type="uint8_t" name="down_limit">Specify down limit of motor</field>		   
           </message>
-          <!-- MESSAGE IDs 150 - 240: Space for custom messages in individual projectname_messages.xml files -->
+		  
+		  <message id="153" name="PID_CONFIG">
+			   <description>Config parameters of Motor: Power, Number of poles, Up Limit, Down Limit</description>
+               <field type="uint8_t" name="motor_name">Name of motor: ROLL_MOTOR, PITCH_MOTOR, YAW_MOTOR</field>
+               <field type="uint8_t" name="kp_factor">Specify kp factor of motor</field>
+               <field type="uint8_t" name="ki_factor">Specify ki factor of motor</field>
+			   <field type="uint8_t" name="kd_factor">Specify kd factor of motor</field>
+		  </message>
+        
      </messages>
 </mavlink>
