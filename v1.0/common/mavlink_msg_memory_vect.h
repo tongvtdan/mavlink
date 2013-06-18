@@ -38,7 +38,7 @@ typedef struct __mavlink_memory_vect_t
  * @param value Memory contents at specified address
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_memory_vect_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_memory_vect_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint16_t address, uint8_t ver, uint8_t type, const int8_t *value)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -73,7 +73,7 @@ static inline uint16_t mavlink_msg_memory_vect_pack(uint8_t system_id, uint8_t c
  * @param value Memory contents at specified address
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_memory_vect_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_memory_vect_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint16_t address,uint8_t ver,uint8_t type,const int8_t *value)
 {
@@ -105,7 +105,7 @@ static inline uint16_t mavlink_msg_memory_vect_pack_chan(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param memory_vect C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_memory_vect_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_memory_vect_t* memory_vect)
+static __inline uint16_t mavlink_msg_memory_vect_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_memory_vect_t* memory_vect)
 {
 	return mavlink_msg_memory_vect_pack(system_id, component_id, msg, memory_vect->address, memory_vect->ver, memory_vect->type, memory_vect->value);
 }
@@ -121,7 +121,7 @@ static inline uint16_t mavlink_msg_memory_vect_encode(uint8_t system_id, uint8_t
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_memory_vect_send(mavlink_channel_t chan, uint16_t address, uint8_t ver, uint8_t type, const int8_t *value)
+static __inline void mavlink_msg_memory_vect_send(mavlink_channel_t chan, uint16_t address, uint8_t ver, uint8_t type, const int8_t *value)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[36];
@@ -150,7 +150,7 @@ static inline void mavlink_msg_memory_vect_send(mavlink_channel_t chan, uint16_t
  *
  * @return Starting address of the debug variables
  */
-static inline uint16_t mavlink_msg_memory_vect_get_address(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_memory_vect_get_address(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  0);
 }
@@ -160,7 +160,7 @@ static inline uint16_t mavlink_msg_memory_vect_get_address(const mavlink_message
  *
  * @return Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below
  */
-static inline uint8_t mavlink_msg_memory_vect_get_ver(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_memory_vect_get_ver(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  2);
 }
@@ -170,7 +170,7 @@ static inline uint8_t mavlink_msg_memory_vect_get_ver(const mavlink_message_t* m
  *
  * @return Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14
  */
-static inline uint8_t mavlink_msg_memory_vect_get_type(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_memory_vect_get_type(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  3);
 }
@@ -180,7 +180,7 @@ static inline uint8_t mavlink_msg_memory_vect_get_type(const mavlink_message_t* 
  *
  * @return Memory contents at specified address
  */
-static inline uint16_t mavlink_msg_memory_vect_get_value(const mavlink_message_t* msg, int8_t *value)
+static __inline uint16_t mavlink_msg_memory_vect_get_value(const mavlink_message_t* msg, int8_t *value)
 {
 	return _MAV_RETURN_int8_t_array(msg, value, 32,  4);
 }
@@ -191,7 +191,7 @@ static inline uint16_t mavlink_msg_memory_vect_get_value(const mavlink_message_t
  * @param msg The message to decode
  * @param memory_vect C-struct to decode the message contents into
  */
-static inline void mavlink_msg_memory_vect_decode(const mavlink_message_t* msg, mavlink_memory_vect_t* memory_vect)
+static __inline void mavlink_msg_memory_vect_decode(const mavlink_message_t* msg, mavlink_memory_vect_t* memory_vect)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	memory_vect->address = mavlink_msg_memory_vect_get_address(msg);

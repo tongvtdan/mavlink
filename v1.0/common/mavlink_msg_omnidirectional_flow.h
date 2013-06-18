@@ -45,7 +45,7 @@ typedef struct __mavlink_omnidirectional_flow_t
  * @param front_distance_m Front distance in meters. Positive value (including zero): distance known. Negative value: Unknown distance
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_omnidirectional_flow_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_omnidirectional_flow_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t time_usec, uint8_t sensor_id, const int16_t *left, const int16_t *right, uint8_t quality, float front_distance_m)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -86,7 +86,7 @@ static inline uint16_t mavlink_msg_omnidirectional_flow_pack(uint8_t system_id, 
  * @param front_distance_m Front distance in meters. Positive value (including zero): distance known. Negative value: Unknown distance
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_omnidirectional_flow_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_omnidirectional_flow_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t time_usec,uint8_t sensor_id,const int16_t *left,const int16_t *right,uint8_t quality,float front_distance_m)
 {
@@ -122,7 +122,7 @@ static inline uint16_t mavlink_msg_omnidirectional_flow_pack_chan(uint8_t system
  * @param msg The MAVLink message to compress the data into
  * @param omnidirectional_flow C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_omnidirectional_flow_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_omnidirectional_flow_t* omnidirectional_flow)
+static __inline uint16_t mavlink_msg_omnidirectional_flow_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_omnidirectional_flow_t* omnidirectional_flow)
 {
 	return mavlink_msg_omnidirectional_flow_pack(system_id, component_id, msg, omnidirectional_flow->time_usec, omnidirectional_flow->sensor_id, omnidirectional_flow->left, omnidirectional_flow->right, omnidirectional_flow->quality, omnidirectional_flow->front_distance_m);
 }
@@ -140,7 +140,7 @@ static inline uint16_t mavlink_msg_omnidirectional_flow_encode(uint8_t system_id
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_omnidirectional_flow_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t sensor_id, const int16_t *left, const int16_t *right, uint8_t quality, float front_distance_m)
+static __inline void mavlink_msg_omnidirectional_flow_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t sensor_id, const int16_t *left, const int16_t *right, uint8_t quality, float front_distance_m)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[54];
@@ -173,7 +173,7 @@ static inline void mavlink_msg_omnidirectional_flow_send(mavlink_channel_t chan,
  *
  * @return Timestamp (microseconds, synced to UNIX time or since system boot)
  */
-static inline uint64_t mavlink_msg_omnidirectional_flow_get_time_usec(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_omnidirectional_flow_get_time_usec(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -183,7 +183,7 @@ static inline uint64_t mavlink_msg_omnidirectional_flow_get_time_usec(const mavl
  *
  * @return Sensor ID
  */
-static inline uint8_t mavlink_msg_omnidirectional_flow_get_sensor_id(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_omnidirectional_flow_get_sensor_id(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  52);
 }
@@ -193,7 +193,7 @@ static inline uint8_t mavlink_msg_omnidirectional_flow_get_sensor_id(const mavli
  *
  * @return Flow in deci pixels (1 = 0.1 pixel) on left hemisphere
  */
-static inline uint16_t mavlink_msg_omnidirectional_flow_get_left(const mavlink_message_t* msg, int16_t *left)
+static __inline uint16_t mavlink_msg_omnidirectional_flow_get_left(const mavlink_message_t* msg, int16_t *left)
 {
 	return _MAV_RETURN_int16_t_array(msg, left, 10,  12);
 }
@@ -203,7 +203,7 @@ static inline uint16_t mavlink_msg_omnidirectional_flow_get_left(const mavlink_m
  *
  * @return Flow in deci pixels (1 = 0.1 pixel) on right hemisphere
  */
-static inline uint16_t mavlink_msg_omnidirectional_flow_get_right(const mavlink_message_t* msg, int16_t *right)
+static __inline uint16_t mavlink_msg_omnidirectional_flow_get_right(const mavlink_message_t* msg, int16_t *right)
 {
 	return _MAV_RETURN_int16_t_array(msg, right, 10,  32);
 }
@@ -213,7 +213,7 @@ static inline uint16_t mavlink_msg_omnidirectional_flow_get_right(const mavlink_
  *
  * @return Optical flow quality / confidence. 0: bad, 255: maximum quality
  */
-static inline uint8_t mavlink_msg_omnidirectional_flow_get_quality(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_omnidirectional_flow_get_quality(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  53);
 }
@@ -223,7 +223,7 @@ static inline uint8_t mavlink_msg_omnidirectional_flow_get_quality(const mavlink
  *
  * @return Front distance in meters. Positive value (including zero): distance known. Negative value: Unknown distance
  */
-static inline float mavlink_msg_omnidirectional_flow_get_front_distance_m(const mavlink_message_t* msg)
+static __inline float mavlink_msg_omnidirectional_flow_get_front_distance_m(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -234,7 +234,7 @@ static inline float mavlink_msg_omnidirectional_flow_get_front_distance_m(const 
  * @param msg The message to decode
  * @param omnidirectional_flow C-struct to decode the message contents into
  */
-static inline void mavlink_msg_omnidirectional_flow_decode(const mavlink_message_t* msg, mavlink_omnidirectional_flow_t* omnidirectional_flow)
+static __inline void mavlink_msg_omnidirectional_flow_decode(const mavlink_message_t* msg, mavlink_omnidirectional_flow_t* omnidirectional_flow)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	omnidirectional_flow->time_usec = mavlink_msg_omnidirectional_flow_get_time_usec(msg);

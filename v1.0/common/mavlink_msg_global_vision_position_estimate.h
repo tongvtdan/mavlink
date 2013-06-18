@@ -47,7 +47,7 @@ typedef struct __mavlink_global_vision_position_estimate_t
  * @param yaw Yaw angle in rad
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_global_vision_position_estimate_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_global_vision_position_estimate_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t usec, float x, float y, float z, float roll, float pitch, float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -93,7 +93,7 @@ static inline uint16_t mavlink_msg_global_vision_position_estimate_pack(uint8_t 
  * @param yaw Yaw angle in rad
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_global_vision_position_estimate_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_global_vision_position_estimate_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t usec,float x,float y,float z,float roll,float pitch,float yaw)
 {
@@ -133,7 +133,7 @@ static inline uint16_t mavlink_msg_global_vision_position_estimate_pack_chan(uin
  * @param msg The MAVLink message to compress the data into
  * @param global_vision_position_estimate C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_global_vision_position_estimate_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_global_vision_position_estimate_t* global_vision_position_estimate)
+static __inline uint16_t mavlink_msg_global_vision_position_estimate_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_global_vision_position_estimate_t* global_vision_position_estimate)
 {
 	return mavlink_msg_global_vision_position_estimate_pack(system_id, component_id, msg, global_vision_position_estimate->usec, global_vision_position_estimate->x, global_vision_position_estimate->y, global_vision_position_estimate->z, global_vision_position_estimate->roll, global_vision_position_estimate->pitch, global_vision_position_estimate->yaw);
 }
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_global_vision_position_estimate_encode(uint8_
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_global_vision_position_estimate_send(mavlink_channel_t chan, uint64_t usec, float x, float y, float z, float roll, float pitch, float yaw)
+static __inline void mavlink_msg_global_vision_position_estimate_send(mavlink_channel_t chan, uint64_t usec, float x, float y, float z, float roll, float pitch, float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[32];
@@ -189,7 +189,7 @@ static inline void mavlink_msg_global_vision_position_estimate_send(mavlink_chan
  *
  * @return Timestamp (microseconds, synced to UNIX time or since system boot)
  */
-static inline uint64_t mavlink_msg_global_vision_position_estimate_get_usec(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_global_vision_position_estimate_get_usec(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -199,7 +199,7 @@ static inline uint64_t mavlink_msg_global_vision_position_estimate_get_usec(cons
  *
  * @return Global X position
  */
-static inline float mavlink_msg_global_vision_position_estimate_get_x(const mavlink_message_t* msg)
+static __inline float mavlink_msg_global_vision_position_estimate_get_x(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -209,7 +209,7 @@ static inline float mavlink_msg_global_vision_position_estimate_get_x(const mavl
  *
  * @return Global Y position
  */
-static inline float mavlink_msg_global_vision_position_estimate_get_y(const mavlink_message_t* msg)
+static __inline float mavlink_msg_global_vision_position_estimate_get_y(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -219,7 +219,7 @@ static inline float mavlink_msg_global_vision_position_estimate_get_y(const mavl
  *
  * @return Global Z position
  */
-static inline float mavlink_msg_global_vision_position_estimate_get_z(const mavlink_message_t* msg)
+static __inline float mavlink_msg_global_vision_position_estimate_get_z(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -229,7 +229,7 @@ static inline float mavlink_msg_global_vision_position_estimate_get_z(const mavl
  *
  * @return Roll angle in rad
  */
-static inline float mavlink_msg_global_vision_position_estimate_get_roll(const mavlink_message_t* msg)
+static __inline float mavlink_msg_global_vision_position_estimate_get_roll(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  20);
 }
@@ -239,7 +239,7 @@ static inline float mavlink_msg_global_vision_position_estimate_get_roll(const m
  *
  * @return Pitch angle in rad
  */
-static inline float mavlink_msg_global_vision_position_estimate_get_pitch(const mavlink_message_t* msg)
+static __inline float mavlink_msg_global_vision_position_estimate_get_pitch(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  24);
 }
@@ -249,7 +249,7 @@ static inline float mavlink_msg_global_vision_position_estimate_get_pitch(const 
  *
  * @return Yaw angle in rad
  */
-static inline float mavlink_msg_global_vision_position_estimate_get_yaw(const mavlink_message_t* msg)
+static __inline float mavlink_msg_global_vision_position_estimate_get_yaw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  28);
 }
@@ -260,7 +260,7 @@ static inline float mavlink_msg_global_vision_position_estimate_get_yaw(const ma
  * @param msg The message to decode
  * @param global_vision_position_estimate C-struct to decode the message contents into
  */
-static inline void mavlink_msg_global_vision_position_estimate_decode(const mavlink_message_t* msg, mavlink_global_vision_position_estimate_t* global_vision_position_estimate)
+static __inline void mavlink_msg_global_vision_position_estimate_decode(const mavlink_message_t* msg, mavlink_global_vision_position_estimate_t* global_vision_position_estimate)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	global_vision_position_estimate->usec = mavlink_msg_global_vision_position_estimate_get_usec(msg);

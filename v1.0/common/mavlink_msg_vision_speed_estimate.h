@@ -38,7 +38,7 @@ typedef struct __mavlink_vision_speed_estimate_t
  * @param z Global Z speed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_vision_speed_estimate_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_vision_speed_estimate_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t usec, float x, float y, float z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_vision_speed_estimate_pack(uint8_t system_id,
  * @param z Global Z speed
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_vision_speed_estimate_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_vision_speed_estimate_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t usec,float x,float y,float z)
 {
@@ -109,7 +109,7 @@ static inline uint16_t mavlink_msg_vision_speed_estimate_pack_chan(uint8_t syste
  * @param msg The MAVLink message to compress the data into
  * @param vision_speed_estimate C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_vision_speed_estimate_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_vision_speed_estimate_t* vision_speed_estimate)
+static __inline uint16_t mavlink_msg_vision_speed_estimate_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_vision_speed_estimate_t* vision_speed_estimate)
 {
 	return mavlink_msg_vision_speed_estimate_pack(system_id, component_id, msg, vision_speed_estimate->usec, vision_speed_estimate->x, vision_speed_estimate->y, vision_speed_estimate->z);
 }
@@ -125,7 +125,7 @@ static inline uint16_t mavlink_msg_vision_speed_estimate_encode(uint8_t system_i
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_vision_speed_estimate_send(mavlink_channel_t chan, uint64_t usec, float x, float y, float z)
+static __inline void mavlink_msg_vision_speed_estimate_send(mavlink_channel_t chan, uint64_t usec, float x, float y, float z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[20];
@@ -156,7 +156,7 @@ static inline void mavlink_msg_vision_speed_estimate_send(mavlink_channel_t chan
  *
  * @return Timestamp (microseconds, synced to UNIX time or since system boot)
  */
-static inline uint64_t mavlink_msg_vision_speed_estimate_get_usec(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_vision_speed_estimate_get_usec(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -166,7 +166,7 @@ static inline uint64_t mavlink_msg_vision_speed_estimate_get_usec(const mavlink_
  *
  * @return Global X speed
  */
-static inline float mavlink_msg_vision_speed_estimate_get_x(const mavlink_message_t* msg)
+static __inline float mavlink_msg_vision_speed_estimate_get_x(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -176,7 +176,7 @@ static inline float mavlink_msg_vision_speed_estimate_get_x(const mavlink_messag
  *
  * @return Global Y speed
  */
-static inline float mavlink_msg_vision_speed_estimate_get_y(const mavlink_message_t* msg)
+static __inline float mavlink_msg_vision_speed_estimate_get_y(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -186,7 +186,7 @@ static inline float mavlink_msg_vision_speed_estimate_get_y(const mavlink_messag
  *
  * @return Global Z speed
  */
-static inline float mavlink_msg_vision_speed_estimate_get_z(const mavlink_message_t* msg)
+static __inline float mavlink_msg_vision_speed_estimate_get_z(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -197,7 +197,7 @@ static inline float mavlink_msg_vision_speed_estimate_get_z(const mavlink_messag
  * @param msg The message to decode
  * @param vision_speed_estimate C-struct to decode the message contents into
  */
-static inline void mavlink_msg_vision_speed_estimate_decode(const mavlink_message_t* msg, mavlink_vision_speed_estimate_t* vision_speed_estimate)
+static __inline void mavlink_msg_vision_speed_estimate_decode(const mavlink_message_t* msg, mavlink_vision_speed_estimate_t* vision_speed_estimate)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	vision_speed_estimate->usec = mavlink_msg_vision_speed_estimate_get_usec(msg);

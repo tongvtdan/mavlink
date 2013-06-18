@@ -41,7 +41,7 @@ typedef struct __mavlink_file_transfer_start_t
  * @param flags RESERVED
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_file_transfer_start_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_file_transfer_start_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t transfer_uid, const char *dest_path, uint8_t direction, uint32_t file_size, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -79,7 +79,7 @@ static inline uint16_t mavlink_msg_file_transfer_start_pack(uint8_t system_id, u
  * @param flags RESERVED
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_file_transfer_start_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_file_transfer_start_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t transfer_uid,const char *dest_path,uint8_t direction,uint32_t file_size,uint8_t flags)
 {
@@ -113,7 +113,7 @@ static inline uint16_t mavlink_msg_file_transfer_start_pack_chan(uint8_t system_
  * @param msg The MAVLink message to compress the data into
  * @param file_transfer_start C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_file_transfer_start_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_file_transfer_start_t* file_transfer_start)
+static __inline uint16_t mavlink_msg_file_transfer_start_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_file_transfer_start_t* file_transfer_start)
 {
 	return mavlink_msg_file_transfer_start_pack(system_id, component_id, msg, file_transfer_start->transfer_uid, file_transfer_start->dest_path, file_transfer_start->direction, file_transfer_start->file_size, file_transfer_start->flags);
 }
@@ -130,7 +130,7 @@ static inline uint16_t mavlink_msg_file_transfer_start_encode(uint8_t system_id,
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_file_transfer_start_send(mavlink_channel_t chan, uint64_t transfer_uid, const char *dest_path, uint8_t direction, uint32_t file_size, uint8_t flags)
+static __inline void mavlink_msg_file_transfer_start_send(mavlink_channel_t chan, uint64_t transfer_uid, const char *dest_path, uint8_t direction, uint32_t file_size, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[254];
@@ -161,7 +161,7 @@ static inline void mavlink_msg_file_transfer_start_send(mavlink_channel_t chan, 
  *
  * @return Unique transfer ID
  */
-static inline uint64_t mavlink_msg_file_transfer_start_get_transfer_uid(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_file_transfer_start_get_transfer_uid(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -171,7 +171,7 @@ static inline uint64_t mavlink_msg_file_transfer_start_get_transfer_uid(const ma
  *
  * @return Destination path
  */
-static inline uint16_t mavlink_msg_file_transfer_start_get_dest_path(const mavlink_message_t* msg, char *dest_path)
+static __inline uint16_t mavlink_msg_file_transfer_start_get_dest_path(const mavlink_message_t* msg, char *dest_path)
 {
 	return _MAV_RETURN_char_array(msg, dest_path, 240,  12);
 }
@@ -181,7 +181,7 @@ static inline uint16_t mavlink_msg_file_transfer_start_get_dest_path(const mavli
  *
  * @return Transfer direction: 0: from requester, 1: to requester
  */
-static inline uint8_t mavlink_msg_file_transfer_start_get_direction(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_file_transfer_start_get_direction(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  252);
 }
@@ -191,7 +191,7 @@ static inline uint8_t mavlink_msg_file_transfer_start_get_direction(const mavlin
  *
  * @return File size in bytes
  */
-static inline uint32_t mavlink_msg_file_transfer_start_get_file_size(const mavlink_message_t* msg)
+static __inline uint32_t mavlink_msg_file_transfer_start_get_file_size(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint32_t(msg,  8);
 }
@@ -201,7 +201,7 @@ static inline uint32_t mavlink_msg_file_transfer_start_get_file_size(const mavli
  *
  * @return RESERVED
  */
-static inline uint8_t mavlink_msg_file_transfer_start_get_flags(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_file_transfer_start_get_flags(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  253);
 }
@@ -212,7 +212,7 @@ static inline uint8_t mavlink_msg_file_transfer_start_get_flags(const mavlink_me
  * @param msg The message to decode
  * @param file_transfer_start C-struct to decode the message contents into
  */
-static inline void mavlink_msg_file_transfer_start_decode(const mavlink_message_t* msg, mavlink_file_transfer_start_t* file_transfer_start)
+static __inline void mavlink_msg_file_transfer_start_decode(const mavlink_message_t* msg, mavlink_file_transfer_start_t* file_transfer_start)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	file_transfer_start->transfer_uid = mavlink_msg_file_transfer_start_get_transfer_uid(msg);

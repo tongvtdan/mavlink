@@ -53,7 +53,7 @@ typedef struct __mavlink_state_correction_t
  * @param vzErr z velocity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_state_correction_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_state_correction_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       float xErr, float yErr, float zErr, float rollErr, float pitchErr, float yawErr, float vxErr, float vyErr, float vzErr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -105,7 +105,7 @@ static inline uint16_t mavlink_msg_state_correction_pack(uint8_t system_id, uint
  * @param vzErr z velocity
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_state_correction_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_state_correction_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           float xErr,float yErr,float zErr,float rollErr,float pitchErr,float yawErr,float vxErr,float vyErr,float vzErr)
 {
@@ -149,7 +149,7 @@ static inline uint16_t mavlink_msg_state_correction_pack_chan(uint8_t system_id,
  * @param msg The MAVLink message to compress the data into
  * @param state_correction C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_state_correction_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_state_correction_t* state_correction)
+static __inline uint16_t mavlink_msg_state_correction_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_state_correction_t* state_correction)
 {
 	return mavlink_msg_state_correction_pack(system_id, component_id, msg, state_correction->xErr, state_correction->yErr, state_correction->zErr, state_correction->rollErr, state_correction->pitchErr, state_correction->yawErr, state_correction->vxErr, state_correction->vyErr, state_correction->vzErr);
 }
@@ -170,7 +170,7 @@ static inline uint16_t mavlink_msg_state_correction_encode(uint8_t system_id, ui
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_state_correction_send(mavlink_channel_t chan, float xErr, float yErr, float zErr, float rollErr, float pitchErr, float yawErr, float vxErr, float vyErr, float vzErr)
+static __inline void mavlink_msg_state_correction_send(mavlink_channel_t chan, float xErr, float yErr, float zErr, float rollErr, float pitchErr, float yawErr, float vxErr, float vyErr, float vzErr)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[36];
@@ -211,7 +211,7 @@ static inline void mavlink_msg_state_correction_send(mavlink_channel_t chan, flo
  *
  * @return x position error
  */
-static inline float mavlink_msg_state_correction_get_xErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_xErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  0);
 }
@@ -221,7 +221,7 @@ static inline float mavlink_msg_state_correction_get_xErr(const mavlink_message_
  *
  * @return y position error
  */
-static inline float mavlink_msg_state_correction_get_yErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_yErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
@@ -231,7 +231,7 @@ static inline float mavlink_msg_state_correction_get_yErr(const mavlink_message_
  *
  * @return z position error
  */
-static inline float mavlink_msg_state_correction_get_zErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_zErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -241,7 +241,7 @@ static inline float mavlink_msg_state_correction_get_zErr(const mavlink_message_
  *
  * @return roll error (radians)
  */
-static inline float mavlink_msg_state_correction_get_rollErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_rollErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -251,7 +251,7 @@ static inline float mavlink_msg_state_correction_get_rollErr(const mavlink_messa
  *
  * @return pitch error (radians)
  */
-static inline float mavlink_msg_state_correction_get_pitchErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_pitchErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -261,7 +261,7 @@ static inline float mavlink_msg_state_correction_get_pitchErr(const mavlink_mess
  *
  * @return yaw error (radians)
  */
-static inline float mavlink_msg_state_correction_get_yawErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_yawErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  20);
 }
@@ -271,7 +271,7 @@ static inline float mavlink_msg_state_correction_get_yawErr(const mavlink_messag
  *
  * @return x velocity
  */
-static inline float mavlink_msg_state_correction_get_vxErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_vxErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  24);
 }
@@ -281,7 +281,7 @@ static inline float mavlink_msg_state_correction_get_vxErr(const mavlink_message
  *
  * @return y velocity
  */
-static inline float mavlink_msg_state_correction_get_vyErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_vyErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  28);
 }
@@ -291,7 +291,7 @@ static inline float mavlink_msg_state_correction_get_vyErr(const mavlink_message
  *
  * @return z velocity
  */
-static inline float mavlink_msg_state_correction_get_vzErr(const mavlink_message_t* msg)
+static __inline float mavlink_msg_state_correction_get_vzErr(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  32);
 }
@@ -302,7 +302,7 @@ static inline float mavlink_msg_state_correction_get_vzErr(const mavlink_message
  * @param msg The message to decode
  * @param state_correction C-struct to decode the message contents into
  */
-static inline void mavlink_msg_state_correction_decode(const mavlink_message_t* msg, mavlink_state_correction_t* state_correction)
+static __inline void mavlink_msg_state_correction_decode(const mavlink_message_t* msg, mavlink_state_correction_t* state_correction)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	state_correction->xErr = mavlink_msg_state_correction_get_xErr(msg);
