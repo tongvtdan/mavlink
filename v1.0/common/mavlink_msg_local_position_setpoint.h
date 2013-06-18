@@ -41,7 +41,7 @@ typedef struct __mavlink_local_position_setpoint_t
  * @param yaw Desired yaw angle
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_local_position_setpoint_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_local_position_setpoint_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t coordinate_frame, float x, float y, float z, float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -81,7 +81,7 @@ static inline uint16_t mavlink_msg_local_position_setpoint_pack(uint8_t system_i
  * @param yaw Desired yaw angle
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_local_position_setpoint_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_local_position_setpoint_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t coordinate_frame,float x,float y,float z,float yaw)
 {
@@ -117,7 +117,7 @@ static inline uint16_t mavlink_msg_local_position_setpoint_pack_chan(uint8_t sys
  * @param msg The MAVLink message to compress the data into
  * @param local_position_setpoint C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_local_position_setpoint_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_local_position_setpoint_t* local_position_setpoint)
+static __inline uint16_t mavlink_msg_local_position_setpoint_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_local_position_setpoint_t* local_position_setpoint)
 {
 	return mavlink_msg_local_position_setpoint_pack(system_id, component_id, msg, local_position_setpoint->coordinate_frame, local_position_setpoint->x, local_position_setpoint->y, local_position_setpoint->z, local_position_setpoint->yaw);
 }
@@ -134,7 +134,7 @@ static inline uint16_t mavlink_msg_local_position_setpoint_encode(uint8_t system
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_local_position_setpoint_send(mavlink_channel_t chan, uint8_t coordinate_frame, float x, float y, float z, float yaw)
+static __inline void mavlink_msg_local_position_setpoint_send(mavlink_channel_t chan, uint8_t coordinate_frame, float x, float y, float z, float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[17];
@@ -167,7 +167,7 @@ static inline void mavlink_msg_local_position_setpoint_send(mavlink_channel_t ch
  *
  * @return Coordinate frame - valid values are only MAV_FRAME_LOCAL_NED or MAV_FRAME_LOCAL_ENU
  */
-static inline uint8_t mavlink_msg_local_position_setpoint_get_coordinate_frame(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_local_position_setpoint_get_coordinate_frame(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  16);
 }
@@ -177,7 +177,7 @@ static inline uint8_t mavlink_msg_local_position_setpoint_get_coordinate_frame(c
  *
  * @return x position
  */
-static inline float mavlink_msg_local_position_setpoint_get_x(const mavlink_message_t* msg)
+static __inline float mavlink_msg_local_position_setpoint_get_x(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  0);
 }
@@ -187,7 +187,7 @@ static inline float mavlink_msg_local_position_setpoint_get_x(const mavlink_mess
  *
  * @return y position
  */
-static inline float mavlink_msg_local_position_setpoint_get_y(const mavlink_message_t* msg)
+static __inline float mavlink_msg_local_position_setpoint_get_y(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
@@ -197,7 +197,7 @@ static inline float mavlink_msg_local_position_setpoint_get_y(const mavlink_mess
  *
  * @return z position
  */
-static inline float mavlink_msg_local_position_setpoint_get_z(const mavlink_message_t* msg)
+static __inline float mavlink_msg_local_position_setpoint_get_z(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -207,7 +207,7 @@ static inline float mavlink_msg_local_position_setpoint_get_z(const mavlink_mess
  *
  * @return Desired yaw angle
  */
-static inline float mavlink_msg_local_position_setpoint_get_yaw(const mavlink_message_t* msg)
+static __inline float mavlink_msg_local_position_setpoint_get_yaw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -218,7 +218,7 @@ static inline float mavlink_msg_local_position_setpoint_get_yaw(const mavlink_me
  * @param msg The message to decode
  * @param local_position_setpoint C-struct to decode the message contents into
  */
-static inline void mavlink_msg_local_position_setpoint_decode(const mavlink_message_t* msg, mavlink_local_position_setpoint_t* local_position_setpoint)
+static __inline void mavlink_msg_local_position_setpoint_decode(const mavlink_message_t* msg, mavlink_local_position_setpoint_t* local_position_setpoint)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	local_position_setpoint->x = mavlink_msg_local_position_setpoint_get_x(msg);

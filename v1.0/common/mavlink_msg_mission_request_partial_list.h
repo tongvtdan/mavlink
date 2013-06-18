@@ -38,7 +38,7 @@ typedef struct __mavlink_mission_request_partial_list_t
  * @param end_index End index, -1 by default (-1: send list to end). Else a valid index of the list
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_request_partial_list_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_mission_request_partial_list_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t target_system, uint8_t target_component, int16_t start_index, int16_t end_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_mission_request_partial_list_pack(uint8_t sys
  * @param end_index End index, -1 by default (-1: send list to end). Else a valid index of the list
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_mission_request_partial_list_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_mission_request_partial_list_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t target_system,uint8_t target_component,int16_t start_index,int16_t end_index)
 {
@@ -109,7 +109,7 @@ static inline uint16_t mavlink_msg_mission_request_partial_list_pack_chan(uint8_
  * @param msg The MAVLink message to compress the data into
  * @param mission_request_partial_list C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_mission_request_partial_list_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_request_partial_list_t* mission_request_partial_list)
+static __inline uint16_t mavlink_msg_mission_request_partial_list_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_mission_request_partial_list_t* mission_request_partial_list)
 {
 	return mavlink_msg_mission_request_partial_list_pack(system_id, component_id, msg, mission_request_partial_list->target_system, mission_request_partial_list->target_component, mission_request_partial_list->start_index, mission_request_partial_list->end_index);
 }
@@ -125,7 +125,7 @@ static inline uint16_t mavlink_msg_mission_request_partial_list_encode(uint8_t s
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_mission_request_partial_list_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, int16_t start_index, int16_t end_index)
+static __inline void mavlink_msg_mission_request_partial_list_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, int16_t start_index, int16_t end_index)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[6];
@@ -156,7 +156,7 @@ static inline void mavlink_msg_mission_request_partial_list_send(mavlink_channel
  *
  * @return System ID
  */
-static inline uint8_t mavlink_msg_mission_request_partial_list_get_target_system(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_mission_request_partial_list_get_target_system(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  4);
 }
@@ -166,7 +166,7 @@ static inline uint8_t mavlink_msg_mission_request_partial_list_get_target_system
  *
  * @return Component ID
  */
-static inline uint8_t mavlink_msg_mission_request_partial_list_get_target_component(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_mission_request_partial_list_get_target_component(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  5);
 }
@@ -176,7 +176,7 @@ static inline uint8_t mavlink_msg_mission_request_partial_list_get_target_compon
  *
  * @return Start index, 0 by default
  */
-static inline int16_t mavlink_msg_mission_request_partial_list_get_start_index(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_mission_request_partial_list_get_start_index(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  0);
 }
@@ -186,7 +186,7 @@ static inline int16_t mavlink_msg_mission_request_partial_list_get_start_index(c
  *
  * @return End index, -1 by default (-1: send list to end). Else a valid index of the list
  */
-static inline int16_t mavlink_msg_mission_request_partial_list_get_end_index(const mavlink_message_t* msg)
+static __inline int16_t mavlink_msg_mission_request_partial_list_get_end_index(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  2);
 }
@@ -197,7 +197,7 @@ static inline int16_t mavlink_msg_mission_request_partial_list_get_end_index(con
  * @param msg The message to decode
  * @param mission_request_partial_list C-struct to decode the message contents into
  */
-static inline void mavlink_msg_mission_request_partial_list_decode(const mavlink_message_t* msg, mavlink_mission_request_partial_list_t* mission_request_partial_list)
+static __inline void mavlink_msg_mission_request_partial_list_decode(const mavlink_message_t* msg, mavlink_mission_request_partial_list_t* mission_request_partial_list)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	mission_request_partial_list->start_index = mavlink_msg_mission_request_partial_list_get_start_index(msg);

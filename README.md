@@ -12,6 +12,7 @@ Sử dụng trong dự án:
 		Chú ý: 
 		  + khi compile trong Keil uVision, có thể gặp lỗi "inline"
 		    --> Khắc phục: thay inline thành __inline (thêm 2 gạch dưới)
+			Với define MAVLINK_HELPER --> protocol.h --> #define MAVLINK_HELPER static __inline
 		  + Với Keil V4.7, có thể gặp thêm lỗi về union
 		    --> khắc phục: thêm #pragma anon_unions vào trước khai báo struct, union 
 			  Tham khảo: http://www.keil.com/support/man/docs/armccref/armccref_Ciajccbj.htm

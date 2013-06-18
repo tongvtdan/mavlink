@@ -35,7 +35,7 @@ typedef struct __mavlink_set_mode_t
  * @param custom_mode The new autopilot-specific mode. This field can be ignored by an autopilot.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_set_mode_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_set_mode_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t target_system, uint8_t base_mode, uint32_t custom_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -69,7 +69,7 @@ static inline uint16_t mavlink_msg_set_mode_pack(uint8_t system_id, uint8_t comp
  * @param custom_mode The new autopilot-specific mode. This field can be ignored by an autopilot.
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_set_mode_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_set_mode_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t target_system,uint8_t base_mode,uint32_t custom_mode)
 {
@@ -101,7 +101,7 @@ static inline uint16_t mavlink_msg_set_mode_pack_chan(uint8_t system_id, uint8_t
  * @param msg The MAVLink message to compress the data into
  * @param set_mode C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_mode_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_mode_t* set_mode)
+static __inline uint16_t mavlink_msg_set_mode_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_mode_t* set_mode)
 {
 	return mavlink_msg_set_mode_pack(system_id, component_id, msg, set_mode->target_system, set_mode->base_mode, set_mode->custom_mode);
 }
@@ -116,7 +116,7 @@ static inline uint16_t mavlink_msg_set_mode_encode(uint8_t system_id, uint8_t co
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_set_mode_send(mavlink_channel_t chan, uint8_t target_system, uint8_t base_mode, uint32_t custom_mode)
+static __inline void mavlink_msg_set_mode_send(mavlink_channel_t chan, uint8_t target_system, uint8_t base_mode, uint32_t custom_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[6];
@@ -145,7 +145,7 @@ static inline void mavlink_msg_set_mode_send(mavlink_channel_t chan, uint8_t tar
  *
  * @return The system setting the mode
  */
-static inline uint8_t mavlink_msg_set_mode_get_target_system(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_set_mode_get_target_system(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  4);
 }
@@ -155,7 +155,7 @@ static inline uint8_t mavlink_msg_set_mode_get_target_system(const mavlink_messa
  *
  * @return The new base mode
  */
-static inline uint8_t mavlink_msg_set_mode_get_base_mode(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_set_mode_get_base_mode(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  5);
 }
@@ -165,7 +165,7 @@ static inline uint8_t mavlink_msg_set_mode_get_base_mode(const mavlink_message_t
  *
  * @return The new autopilot-specific mode. This field can be ignored by an autopilot.
  */
-static inline uint32_t mavlink_msg_set_mode_get_custom_mode(const mavlink_message_t* msg)
+static __inline uint32_t mavlink_msg_set_mode_get_custom_mode(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint32_t(msg,  0);
 }
@@ -176,7 +176,7 @@ static inline uint32_t mavlink_msg_set_mode_get_custom_mode(const mavlink_messag
  * @param msg The message to decode
  * @param set_mode C-struct to decode the message contents into
  */
-static inline void mavlink_msg_set_mode_decode(const mavlink_message_t* msg, mavlink_set_mode_t* set_mode)
+static __inline void mavlink_msg_set_mode_decode(const mavlink_message_t* msg, mavlink_set_mode_t* set_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	set_mode->custom_mode = mavlink_msg_set_mode_get_custom_mode(msg);

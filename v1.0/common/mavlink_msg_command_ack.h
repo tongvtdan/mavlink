@@ -32,7 +32,7 @@ typedef struct __mavlink_command_ack_t
  * @param result See MAV_RESULT enum
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_command_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_command_ack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint16_t command, uint8_t result)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -63,7 +63,7 @@ static inline uint16_t mavlink_msg_command_ack_pack(uint8_t system_id, uint8_t c
  * @param result See MAV_RESULT enum
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_command_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_command_ack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint16_t command,uint8_t result)
 {
@@ -93,7 +93,7 @@ static inline uint16_t mavlink_msg_command_ack_pack_chan(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param command_ack C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_command_ack_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_command_ack_t* command_ack)
+static __inline uint16_t mavlink_msg_command_ack_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_command_ack_t* command_ack)
 {
 	return mavlink_msg_command_ack_pack(system_id, component_id, msg, command_ack->command, command_ack->result);
 }
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_command_ack_encode(uint8_t system_id, uint8_t
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_command_ack_send(mavlink_channel_t chan, uint16_t command, uint8_t result)
+static __inline void mavlink_msg_command_ack_send(mavlink_channel_t chan, uint16_t command, uint8_t result)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[3];
@@ -134,7 +134,7 @@ static inline void mavlink_msg_command_ack_send(mavlink_channel_t chan, uint16_t
  *
  * @return Command ID, as defined by MAV_CMD enum.
  */
-static inline uint16_t mavlink_msg_command_ack_get_command(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_command_ack_get_command(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  0);
 }
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_command_ack_get_command(const mavlink_message
  *
  * @return See MAV_RESULT enum
  */
-static inline uint8_t mavlink_msg_command_ack_get_result(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_command_ack_get_result(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  2);
 }
@@ -155,7 +155,7 @@ static inline uint8_t mavlink_msg_command_ack_get_result(const mavlink_message_t
  * @param msg The message to decode
  * @param command_ack C-struct to decode the message contents into
  */
-static inline void mavlink_msg_command_ack_decode(const mavlink_message_t* msg, mavlink_command_ack_t* command_ack)
+static __inline void mavlink_msg_command_ack_decode(const mavlink_message_t* msg, mavlink_command_ack_t* command_ack)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	command_ack->command = mavlink_msg_command_ack_get_command(msg);
