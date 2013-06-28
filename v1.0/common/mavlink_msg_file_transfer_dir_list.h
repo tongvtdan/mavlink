@@ -35,7 +35,7 @@ typedef struct __mavlink_file_transfer_dir_list_t
  * @param flags RESERVED
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_file_transfer_dir_list_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_file_transfer_dir_list_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t transfer_uid, const char *dir_path, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -67,7 +67,7 @@ static inline uint16_t mavlink_msg_file_transfer_dir_list_pack(uint8_t system_id
  * @param flags RESERVED
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_file_transfer_dir_list_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_file_transfer_dir_list_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t transfer_uid,const char *dir_path,uint8_t flags)
 {
@@ -97,7 +97,7 @@ static inline uint16_t mavlink_msg_file_transfer_dir_list_pack_chan(uint8_t syst
  * @param msg The MAVLink message to compress the data into
  * @param file_transfer_dir_list C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_file_transfer_dir_list_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_file_transfer_dir_list_t* file_transfer_dir_list)
+static __inline uint16_t mavlink_msg_file_transfer_dir_list_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_file_transfer_dir_list_t* file_transfer_dir_list)
 {
 	return mavlink_msg_file_transfer_dir_list_pack(system_id, component_id, msg, file_transfer_dir_list->transfer_uid, file_transfer_dir_list->dir_path, file_transfer_dir_list->flags);
 }
@@ -112,7 +112,7 @@ static inline uint16_t mavlink_msg_file_transfer_dir_list_encode(uint8_t system_
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_file_transfer_dir_list_send(mavlink_channel_t chan, uint64_t transfer_uid, const char *dir_path, uint8_t flags)
+static __inline void mavlink_msg_file_transfer_dir_list_send(mavlink_channel_t chan, uint64_t transfer_uid, const char *dir_path, uint8_t flags)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[249];
@@ -139,7 +139,7 @@ static inline void mavlink_msg_file_transfer_dir_list_send(mavlink_channel_t cha
  *
  * @return Unique transfer ID
  */
-static inline uint64_t mavlink_msg_file_transfer_dir_list_get_transfer_uid(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_file_transfer_dir_list_get_transfer_uid(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -149,7 +149,7 @@ static inline uint64_t mavlink_msg_file_transfer_dir_list_get_transfer_uid(const
  *
  * @return Directory path to list
  */
-static inline uint16_t mavlink_msg_file_transfer_dir_list_get_dir_path(const mavlink_message_t* msg, char *dir_path)
+static __inline uint16_t mavlink_msg_file_transfer_dir_list_get_dir_path(const mavlink_message_t* msg, char *dir_path)
 {
 	return _MAV_RETURN_char_array(msg, dir_path, 240,  8);
 }
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_file_transfer_dir_list_get_dir_path(const mav
  *
  * @return RESERVED
  */
-static inline uint8_t mavlink_msg_file_transfer_dir_list_get_flags(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_file_transfer_dir_list_get_flags(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  248);
 }
@@ -170,7 +170,7 @@ static inline uint8_t mavlink_msg_file_transfer_dir_list_get_flags(const mavlink
  * @param msg The message to decode
  * @param file_transfer_dir_list C-struct to decode the message contents into
  */
-static inline void mavlink_msg_file_transfer_dir_list_decode(const mavlink_message_t* msg, mavlink_file_transfer_dir_list_t* file_transfer_dir_list)
+static __inline void mavlink_msg_file_transfer_dir_list_decode(const mavlink_message_t* msg, mavlink_file_transfer_dir_list_t* file_transfer_dir_list)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	file_transfer_dir_list->transfer_uid = mavlink_msg_file_transfer_dir_list_get_transfer_uid(msg);

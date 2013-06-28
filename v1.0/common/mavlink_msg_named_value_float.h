@@ -35,7 +35,7 @@ typedef struct __mavlink_named_value_float_t
  * @param value Floating point value
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint32_t time_boot_ms, const char *name, float value)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -67,7 +67,7 @@ static inline uint16_t mavlink_msg_named_value_float_pack(uint8_t system_id, uin
  * @param value Floating point value
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_named_value_float_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_named_value_float_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint32_t time_boot_ms,const char *name,float value)
 {
@@ -97,7 +97,7 @@ static inline uint16_t mavlink_msg_named_value_float_pack_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param named_value_float C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_named_value_float_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_named_value_float_t* named_value_float)
+static __inline uint16_t mavlink_msg_named_value_float_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_named_value_float_t* named_value_float)
 {
 	return mavlink_msg_named_value_float_pack(system_id, component_id, msg, named_value_float->time_boot_ms, named_value_float->name, named_value_float->value);
 }
@@ -112,7 +112,7 @@ static inline uint16_t mavlink_msg_named_value_float_encode(uint8_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_named_value_float_send(mavlink_channel_t chan, uint32_t time_boot_ms, const char *name, float value)
+static __inline void mavlink_msg_named_value_float_send(mavlink_channel_t chan, uint32_t time_boot_ms, const char *name, float value)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[18];
@@ -139,7 +139,7 @@ static inline void mavlink_msg_named_value_float_send(mavlink_channel_t chan, ui
  *
  * @return Timestamp (milliseconds since system boot)
  */
-static inline uint32_t mavlink_msg_named_value_float_get_time_boot_ms(const mavlink_message_t* msg)
+static __inline uint32_t mavlink_msg_named_value_float_get_time_boot_ms(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint32_t(msg,  0);
 }
@@ -149,7 +149,7 @@ static inline uint32_t mavlink_msg_named_value_float_get_time_boot_ms(const mavl
  *
  * @return Name of the debug variable
  */
-static inline uint16_t mavlink_msg_named_value_float_get_name(const mavlink_message_t* msg, char *name)
+static __inline uint16_t mavlink_msg_named_value_float_get_name(const mavlink_message_t* msg, char *name)
 {
 	return _MAV_RETURN_char_array(msg, name, 10,  8);
 }
@@ -159,7 +159,7 @@ static inline uint16_t mavlink_msg_named_value_float_get_name(const mavlink_mess
  *
  * @return Floating point value
  */
-static inline float mavlink_msg_named_value_float_get_value(const mavlink_message_t* msg)
+static __inline float mavlink_msg_named_value_float_get_value(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
@@ -170,7 +170,7 @@ static inline float mavlink_msg_named_value_float_get_value(const mavlink_messag
  * @param msg The message to decode
  * @param named_value_float C-struct to decode the message contents into
  */
-static inline void mavlink_msg_named_value_float_decode(const mavlink_message_t* msg, mavlink_named_value_float_t* named_value_float)
+static __inline void mavlink_msg_named_value_float_decode(const mavlink_message_t* msg, mavlink_named_value_float_t* named_value_float)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	named_value_float->time_boot_ms = mavlink_msg_named_value_float_get_time_boot_ms(msg);

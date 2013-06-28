@@ -47,7 +47,7 @@ typedef struct __mavlink_set_quad_swarm_roll_pitch_yaw_thrust_t
  * @param thrust Collective thrust, scaled to uint16 (0..65535)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t group, uint8_t mode, const int16_t *roll, const int16_t *pitch, const int16_t *yaw, const uint16_t *thrust)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -88,7 +88,7 @@ static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_pack(uin
  * @param thrust Collective thrust, scaled to uint16 (0..65535)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t group,uint8_t mode,const int16_t *roll,const int16_t *pitch,const int16_t *yaw,const uint16_t *thrust)
 {
@@ -124,7 +124,7 @@ static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_pack_cha
  * @param msg The MAVLink message to compress the data into
  * @param set_quad_swarm_roll_pitch_yaw_thrust C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_quad_swarm_roll_pitch_yaw_thrust_t* set_quad_swarm_roll_pitch_yaw_thrust)
+static __inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_quad_swarm_roll_pitch_yaw_thrust_t* set_quad_swarm_roll_pitch_yaw_thrust)
 {
 	return mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_pack(system_id, component_id, msg, set_quad_swarm_roll_pitch_yaw_thrust->group, set_quad_swarm_roll_pitch_yaw_thrust->mode, set_quad_swarm_roll_pitch_yaw_thrust->roll, set_quad_swarm_roll_pitch_yaw_thrust->pitch, set_quad_swarm_roll_pitch_yaw_thrust->yaw, set_quad_swarm_roll_pitch_yaw_thrust->thrust);
 }
@@ -142,7 +142,7 @@ static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_encode(u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_send(mavlink_channel_t chan, uint8_t group, uint8_t mode, const int16_t *roll, const int16_t *pitch, const int16_t *yaw, const uint16_t *thrust)
+static __inline void mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_send(mavlink_channel_t chan, uint8_t group, uint8_t mode, const int16_t *roll, const int16_t *pitch, const int16_t *yaw, const uint16_t *thrust)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[34];
@@ -175,7 +175,7 @@ static inline void mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_send(mavlink
  *
  * @return ID of the quadrotor group (0 - 255, up to 256 groups supported)
  */
-static inline uint8_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_group(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_group(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  32);
 }
@@ -185,7 +185,7 @@ static inline uint8_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_group
  *
  * @return ID of the flight mode (0 - 255, up to 256 modes supported)
  */
-static inline uint8_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_mode(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_mode(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  33);
 }
@@ -195,7 +195,7 @@ static inline uint8_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_mode(
  *
  * @return Desired roll angle in radians +-PI (+-32767)
  */
-static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_roll(const mavlink_message_t* msg, int16_t *roll)
+static __inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_roll(const mavlink_message_t* msg, int16_t *roll)
 {
 	return _MAV_RETURN_int16_t_array(msg, roll, 4,  0);
 }
@@ -205,7 +205,7 @@ static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_roll
  *
  * @return Desired pitch angle in radians +-PI (+-32767)
  */
-static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_pitch(const mavlink_message_t* msg, int16_t *pitch)
+static __inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_pitch(const mavlink_message_t* msg, int16_t *pitch)
 {
 	return _MAV_RETURN_int16_t_array(msg, pitch, 4,  8);
 }
@@ -215,7 +215,7 @@ static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_pitc
  *
  * @return Desired yaw angle in radians, scaled to int16 +-PI (+-32767)
  */
-static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_yaw(const mavlink_message_t* msg, int16_t *yaw)
+static __inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_yaw(const mavlink_message_t* msg, int16_t *yaw)
 {
 	return _MAV_RETURN_int16_t_array(msg, yaw, 4,  16);
 }
@@ -225,7 +225,7 @@ static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_yaw(
  *
  * @return Collective thrust, scaled to uint16 (0..65535)
  */
-static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_thrust(const mavlink_message_t* msg, uint16_t *thrust)
+static __inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_thrust(const mavlink_message_t* msg, uint16_t *thrust)
 {
 	return _MAV_RETURN_uint16_t_array(msg, thrust, 4,  24);
 }
@@ -236,7 +236,7 @@ static inline uint16_t mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_thru
  * @param msg The message to decode
  * @param set_quad_swarm_roll_pitch_yaw_thrust C-struct to decode the message contents into
  */
-static inline void mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_decode(const mavlink_message_t* msg, mavlink_set_quad_swarm_roll_pitch_yaw_thrust_t* set_quad_swarm_roll_pitch_yaw_thrust)
+static __inline void mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_decode(const mavlink_message_t* msg, mavlink_set_quad_swarm_roll_pitch_yaw_thrust_t* set_quad_swarm_roll_pitch_yaw_thrust)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	mavlink_msg_set_quad_swarm_roll_pitch_yaw_thrust_get_roll(msg, set_quad_swarm_roll_pitch_yaw_thrust->roll);

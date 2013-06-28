@@ -71,7 +71,7 @@ typedef struct __mavlink_highres_imu_t
  * @param fields_updated Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_highres_imu_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_highres_imu_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t time_usec, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float xmag, float ymag, float zmag, float abs_pressure, float diff_pressure, float pressure_alt, float temperature, uint16_t fields_updated)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -141,7 +141,7 @@ static inline uint16_t mavlink_msg_highres_imu_pack(uint8_t system_id, uint8_t c
  * @param fields_updated Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_highres_imu_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_highres_imu_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t time_usec,float xacc,float yacc,float zacc,float xgyro,float ygyro,float zgyro,float xmag,float ymag,float zmag,float abs_pressure,float diff_pressure,float pressure_alt,float temperature,uint16_t fields_updated)
 {
@@ -197,7 +197,7 @@ static inline uint16_t mavlink_msg_highres_imu_pack_chan(uint8_t system_id, uint
  * @param msg The MAVLink message to compress the data into
  * @param highres_imu C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_highres_imu_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_highres_imu_t* highres_imu)
+static __inline uint16_t mavlink_msg_highres_imu_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_highres_imu_t* highres_imu)
 {
 	return mavlink_msg_highres_imu_pack(system_id, component_id, msg, highres_imu->time_usec, highres_imu->xacc, highres_imu->yacc, highres_imu->zacc, highres_imu->xgyro, highres_imu->ygyro, highres_imu->zgyro, highres_imu->xmag, highres_imu->ymag, highres_imu->zmag, highres_imu->abs_pressure, highres_imu->diff_pressure, highres_imu->pressure_alt, highres_imu->temperature, highres_imu->fields_updated);
 }
@@ -224,7 +224,7 @@ static inline uint16_t mavlink_msg_highres_imu_encode(uint8_t system_id, uint8_t
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_highres_imu_send(mavlink_channel_t chan, uint64_t time_usec, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float xmag, float ymag, float zmag, float abs_pressure, float diff_pressure, float pressure_alt, float temperature, uint16_t fields_updated)
+static __inline void mavlink_msg_highres_imu_send(mavlink_channel_t chan, uint64_t time_usec, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float xmag, float ymag, float zmag, float abs_pressure, float diff_pressure, float pressure_alt, float temperature, uint16_t fields_updated)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[62];
@@ -277,7 +277,7 @@ static inline void mavlink_msg_highres_imu_send(mavlink_channel_t chan, uint64_t
  *
  * @return Timestamp (microseconds, synced to UNIX time or since system boot)
  */
-static inline uint64_t mavlink_msg_highres_imu_get_time_usec(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_highres_imu_get_time_usec(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -287,7 +287,7 @@ static inline uint64_t mavlink_msg_highres_imu_get_time_usec(const mavlink_messa
  *
  * @return X acceleration (m/s^2)
  */
-static inline float mavlink_msg_highres_imu_get_xacc(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_xacc(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -297,7 +297,7 @@ static inline float mavlink_msg_highres_imu_get_xacc(const mavlink_message_t* ms
  *
  * @return Y acceleration (m/s^2)
  */
-static inline float mavlink_msg_highres_imu_get_yacc(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_yacc(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -307,7 +307,7 @@ static inline float mavlink_msg_highres_imu_get_yacc(const mavlink_message_t* ms
  *
  * @return Z acceleration (m/s^2)
  */
-static inline float mavlink_msg_highres_imu_get_zacc(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_zacc(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -317,7 +317,7 @@ static inline float mavlink_msg_highres_imu_get_zacc(const mavlink_message_t* ms
  *
  * @return Angular speed around X axis (rad / sec)
  */
-static inline float mavlink_msg_highres_imu_get_xgyro(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_xgyro(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  20);
 }
@@ -327,7 +327,7 @@ static inline float mavlink_msg_highres_imu_get_xgyro(const mavlink_message_t* m
  *
  * @return Angular speed around Y axis (rad / sec)
  */
-static inline float mavlink_msg_highres_imu_get_ygyro(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_ygyro(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  24);
 }
@@ -337,7 +337,7 @@ static inline float mavlink_msg_highres_imu_get_ygyro(const mavlink_message_t* m
  *
  * @return Angular speed around Z axis (rad / sec)
  */
-static inline float mavlink_msg_highres_imu_get_zgyro(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_zgyro(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  28);
 }
@@ -347,7 +347,7 @@ static inline float mavlink_msg_highres_imu_get_zgyro(const mavlink_message_t* m
  *
  * @return X Magnetic field (Gauss)
  */
-static inline float mavlink_msg_highres_imu_get_xmag(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_xmag(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  32);
 }
@@ -357,7 +357,7 @@ static inline float mavlink_msg_highres_imu_get_xmag(const mavlink_message_t* ms
  *
  * @return Y Magnetic field (Gauss)
  */
-static inline float mavlink_msg_highres_imu_get_ymag(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_ymag(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  36);
 }
@@ -367,7 +367,7 @@ static inline float mavlink_msg_highres_imu_get_ymag(const mavlink_message_t* ms
  *
  * @return Z Magnetic field (Gauss)
  */
-static inline float mavlink_msg_highres_imu_get_zmag(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_zmag(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  40);
 }
@@ -377,7 +377,7 @@ static inline float mavlink_msg_highres_imu_get_zmag(const mavlink_message_t* ms
  *
  * @return Absolute pressure in millibar
  */
-static inline float mavlink_msg_highres_imu_get_abs_pressure(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_abs_pressure(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  44);
 }
@@ -387,7 +387,7 @@ static inline float mavlink_msg_highres_imu_get_abs_pressure(const mavlink_messa
  *
  * @return Differential pressure in millibar
  */
-static inline float mavlink_msg_highres_imu_get_diff_pressure(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_diff_pressure(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  48);
 }
@@ -397,7 +397,7 @@ static inline float mavlink_msg_highres_imu_get_diff_pressure(const mavlink_mess
  *
  * @return Altitude calculated from pressure
  */
-static inline float mavlink_msg_highres_imu_get_pressure_alt(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_pressure_alt(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  52);
 }
@@ -407,7 +407,7 @@ static inline float mavlink_msg_highres_imu_get_pressure_alt(const mavlink_messa
  *
  * @return Temperature in degrees celsius
  */
-static inline float mavlink_msg_highres_imu_get_temperature(const mavlink_message_t* msg)
+static __inline float mavlink_msg_highres_imu_get_temperature(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  56);
 }
@@ -417,7 +417,7 @@ static inline float mavlink_msg_highres_imu_get_temperature(const mavlink_messag
  *
  * @return Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
  */
-static inline uint16_t mavlink_msg_highres_imu_get_fields_updated(const mavlink_message_t* msg)
+static __inline uint16_t mavlink_msg_highres_imu_get_fields_updated(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint16_t(msg,  60);
 }
@@ -428,7 +428,7 @@ static inline uint16_t mavlink_msg_highres_imu_get_fields_updated(const mavlink_
  * @param msg The message to decode
  * @param highres_imu C-struct to decode the message contents into
  */
-static inline void mavlink_msg_highres_imu_decode(const mavlink_message_t* msg, mavlink_highres_imu_t* highres_imu)
+static __inline void mavlink_msg_highres_imu_decode(const mavlink_message_t* msg, mavlink_highres_imu_t* highres_imu)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	highres_imu->time_usec = mavlink_msg_highres_imu_get_time_usec(msg);

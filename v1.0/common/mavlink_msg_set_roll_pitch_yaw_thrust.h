@@ -44,7 +44,7 @@ typedef struct __mavlink_set_roll_pitch_yaw_thrust_t
  * @param thrust Collective thrust, normalized to 0 .. 1
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t target_system, uint8_t target_component, float roll, float pitch, float yaw, float thrust)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -87,7 +87,7 @@ static inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_pack(uint8_t system
  * @param thrust Collective thrust, normalized to 0 .. 1
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t target_system,uint8_t target_component,float roll,float pitch,float yaw,float thrust)
 {
@@ -125,7 +125,7 @@ static inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_pack_chan(uint8_t s
  * @param msg The MAVLink message to compress the data into
  * @param set_roll_pitch_yaw_thrust C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_roll_pitch_yaw_thrust_t* set_roll_pitch_yaw_thrust)
+static __inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_set_roll_pitch_yaw_thrust_t* set_roll_pitch_yaw_thrust)
 {
 	return mavlink_msg_set_roll_pitch_yaw_thrust_pack(system_id, component_id, msg, set_roll_pitch_yaw_thrust->target_system, set_roll_pitch_yaw_thrust->target_component, set_roll_pitch_yaw_thrust->roll, set_roll_pitch_yaw_thrust->pitch, set_roll_pitch_yaw_thrust->yaw, set_roll_pitch_yaw_thrust->thrust);
 }
@@ -143,7 +143,7 @@ static inline uint16_t mavlink_msg_set_roll_pitch_yaw_thrust_encode(uint8_t syst
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_set_roll_pitch_yaw_thrust_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, float roll, float pitch, float yaw, float thrust)
+static __inline void mavlink_msg_set_roll_pitch_yaw_thrust_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, float roll, float pitch, float yaw, float thrust)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[18];
@@ -178,7 +178,7 @@ static inline void mavlink_msg_set_roll_pitch_yaw_thrust_send(mavlink_channel_t 
  *
  * @return System ID
  */
-static inline uint8_t mavlink_msg_set_roll_pitch_yaw_thrust_get_target_system(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_set_roll_pitch_yaw_thrust_get_target_system(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  16);
 }
@@ -188,7 +188,7 @@ static inline uint8_t mavlink_msg_set_roll_pitch_yaw_thrust_get_target_system(co
  *
  * @return Component ID
  */
-static inline uint8_t mavlink_msg_set_roll_pitch_yaw_thrust_get_target_component(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_set_roll_pitch_yaw_thrust_get_target_component(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  17);
 }
@@ -198,7 +198,7 @@ static inline uint8_t mavlink_msg_set_roll_pitch_yaw_thrust_get_target_component
  *
  * @return Desired roll angle in radians
  */
-static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_roll(const mavlink_message_t* msg)
+static __inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_roll(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  0);
 }
@@ -208,7 +208,7 @@ static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_roll(const mavlink
  *
  * @return Desired pitch angle in radians
  */
-static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_pitch(const mavlink_message_t* msg)
+static __inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_pitch(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
@@ -218,7 +218,7 @@ static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_pitch(const mavlin
  *
  * @return Desired yaw angle in radians
  */
-static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_yaw(const mavlink_message_t* msg)
+static __inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_yaw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -228,7 +228,7 @@ static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_yaw(const mavlink_
  *
  * @return Collective thrust, normalized to 0 .. 1
  */
-static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_thrust(const mavlink_message_t* msg)
+static __inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_thrust(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -239,7 +239,7 @@ static inline float mavlink_msg_set_roll_pitch_yaw_thrust_get_thrust(const mavli
  * @param msg The message to decode
  * @param set_roll_pitch_yaw_thrust C-struct to decode the message contents into
  */
-static inline void mavlink_msg_set_roll_pitch_yaw_thrust_decode(const mavlink_message_t* msg, mavlink_set_roll_pitch_yaw_thrust_t* set_roll_pitch_yaw_thrust)
+static __inline void mavlink_msg_set_roll_pitch_yaw_thrust_decode(const mavlink_message_t* msg, mavlink_set_roll_pitch_yaw_thrust_t* set_roll_pitch_yaw_thrust)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	set_roll_pitch_yaw_thrust->roll = mavlink_msg_set_roll_pitch_yaw_thrust_get_roll(msg);
