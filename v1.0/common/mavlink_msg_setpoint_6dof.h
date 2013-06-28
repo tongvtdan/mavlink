@@ -47,7 +47,7 @@ typedef struct __mavlink_setpoint_6dof_t
  * @param rot_z Rotational Component in z
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_setpoint_6dof_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_setpoint_6dof_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint8_t target_system, float trans_x, float trans_y, float trans_z, float rot_x, float rot_y, float rot_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -93,7 +93,7 @@ static inline uint16_t mavlink_msg_setpoint_6dof_pack(uint8_t system_id, uint8_t
  * @param rot_z Rotational Component in z
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_setpoint_6dof_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_setpoint_6dof_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint8_t target_system,float trans_x,float trans_y,float trans_z,float rot_x,float rot_y,float rot_z)
 {
@@ -133,7 +133,7 @@ static inline uint16_t mavlink_msg_setpoint_6dof_pack_chan(uint8_t system_id, ui
  * @param msg The MAVLink message to compress the data into
  * @param setpoint_6dof C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_setpoint_6dof_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_setpoint_6dof_t* setpoint_6dof)
+static __inline uint16_t mavlink_msg_setpoint_6dof_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_setpoint_6dof_t* setpoint_6dof)
 {
 	return mavlink_msg_setpoint_6dof_pack(system_id, component_id, msg, setpoint_6dof->target_system, setpoint_6dof->trans_x, setpoint_6dof->trans_y, setpoint_6dof->trans_z, setpoint_6dof->rot_x, setpoint_6dof->rot_y, setpoint_6dof->rot_z);
 }
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_setpoint_6dof_encode(uint8_t system_id, uint8
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_setpoint_6dof_send(mavlink_channel_t chan, uint8_t target_system, float trans_x, float trans_y, float trans_z, float rot_x, float rot_y, float rot_z)
+static __inline void mavlink_msg_setpoint_6dof_send(mavlink_channel_t chan, uint8_t target_system, float trans_x, float trans_y, float trans_z, float rot_x, float rot_y, float rot_z)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[25];
@@ -189,7 +189,7 @@ static inline void mavlink_msg_setpoint_6dof_send(mavlink_channel_t chan, uint8_
  *
  * @return System ID
  */
-static inline uint8_t mavlink_msg_setpoint_6dof_get_target_system(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_setpoint_6dof_get_target_system(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  24);
 }
@@ -199,7 +199,7 @@ static inline uint8_t mavlink_msg_setpoint_6dof_get_target_system(const mavlink_
  *
  * @return Translational Component in x
  */
-static inline float mavlink_msg_setpoint_6dof_get_trans_x(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_6dof_get_trans_x(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  0);
 }
@@ -209,7 +209,7 @@ static inline float mavlink_msg_setpoint_6dof_get_trans_x(const mavlink_message_
  *
  * @return Translational Component in y
  */
-static inline float mavlink_msg_setpoint_6dof_get_trans_y(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_6dof_get_trans_y(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
@@ -219,7 +219,7 @@ static inline float mavlink_msg_setpoint_6dof_get_trans_y(const mavlink_message_
  *
  * @return Translational Component in z
  */
-static inline float mavlink_msg_setpoint_6dof_get_trans_z(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_6dof_get_trans_z(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
@@ -229,7 +229,7 @@ static inline float mavlink_msg_setpoint_6dof_get_trans_z(const mavlink_message_
  *
  * @return Rotational Component in x
  */
-static inline float mavlink_msg_setpoint_6dof_get_rot_x(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_6dof_get_rot_x(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -239,7 +239,7 @@ static inline float mavlink_msg_setpoint_6dof_get_rot_x(const mavlink_message_t*
  *
  * @return Rotational Component in y
  */
-static inline float mavlink_msg_setpoint_6dof_get_rot_y(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_6dof_get_rot_y(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -249,7 +249,7 @@ static inline float mavlink_msg_setpoint_6dof_get_rot_y(const mavlink_message_t*
  *
  * @return Rotational Component in z
  */
-static inline float mavlink_msg_setpoint_6dof_get_rot_z(const mavlink_message_t* msg)
+static __inline float mavlink_msg_setpoint_6dof_get_rot_z(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  20);
 }
@@ -260,7 +260,7 @@ static inline float mavlink_msg_setpoint_6dof_get_rot_z(const mavlink_message_t*
  * @param msg The message to decode
  * @param setpoint_6dof C-struct to decode the message contents into
  */
-static inline void mavlink_msg_setpoint_6dof_decode(const mavlink_message_t* msg, mavlink_setpoint_6dof_t* setpoint_6dof)
+static __inline void mavlink_msg_setpoint_6dof_decode(const mavlink_message_t* msg, mavlink_setpoint_6dof_t* setpoint_6dof)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	setpoint_6dof->trans_x = mavlink_msg_setpoint_6dof_get_trans_x(msg);

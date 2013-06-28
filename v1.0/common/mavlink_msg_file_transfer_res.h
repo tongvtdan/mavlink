@@ -32,7 +32,7 @@ typedef struct __mavlink_file_transfer_res_t
  * @param result 0: OK, 1: not permitted, 2: bad path / file name, 3: no space left on device
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_file_transfer_res_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+static __inline uint16_t mavlink_msg_file_transfer_res_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
 						       uint64_t transfer_uid, uint8_t result)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
@@ -63,7 +63,7 @@ static inline uint16_t mavlink_msg_file_transfer_res_pack(uint8_t system_id, uin
  * @param result 0: OK, 1: not permitted, 2: bad path / file name, 3: no space left on device
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_file_transfer_res_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+static __inline uint16_t mavlink_msg_file_transfer_res_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
 						           uint64_t transfer_uid,uint8_t result)
 {
@@ -93,7 +93,7 @@ static inline uint16_t mavlink_msg_file_transfer_res_pack_chan(uint8_t system_id
  * @param msg The MAVLink message to compress the data into
  * @param file_transfer_res C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_file_transfer_res_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_file_transfer_res_t* file_transfer_res)
+static __inline uint16_t mavlink_msg_file_transfer_res_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_file_transfer_res_t* file_transfer_res)
 {
 	return mavlink_msg_file_transfer_res_pack(system_id, component_id, msg, file_transfer_res->transfer_uid, file_transfer_res->result);
 }
@@ -107,7 +107,7 @@ static inline uint16_t mavlink_msg_file_transfer_res_encode(uint8_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_file_transfer_res_send(mavlink_channel_t chan, uint64_t transfer_uid, uint8_t result)
+static __inline void mavlink_msg_file_transfer_res_send(mavlink_channel_t chan, uint64_t transfer_uid, uint8_t result)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[9];
@@ -134,7 +134,7 @@ static inline void mavlink_msg_file_transfer_res_send(mavlink_channel_t chan, ui
  *
  * @return Unique transfer ID
  */
-static inline uint64_t mavlink_msg_file_transfer_res_get_transfer_uid(const mavlink_message_t* msg)
+static __inline uint64_t mavlink_msg_file_transfer_res_get_transfer_uid(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
@@ -144,7 +144,7 @@ static inline uint64_t mavlink_msg_file_transfer_res_get_transfer_uid(const mavl
  *
  * @return 0: OK, 1: not permitted, 2: bad path / file name, 3: no space left on device
  */
-static inline uint8_t mavlink_msg_file_transfer_res_get_result(const mavlink_message_t* msg)
+static __inline uint8_t mavlink_msg_file_transfer_res_get_result(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint8_t(msg,  8);
 }
@@ -155,7 +155,7 @@ static inline uint8_t mavlink_msg_file_transfer_res_get_result(const mavlink_mes
  * @param msg The message to decode
  * @param file_transfer_res C-struct to decode the message contents into
  */
-static inline void mavlink_msg_file_transfer_res_decode(const mavlink_message_t* msg, mavlink_file_transfer_res_t* file_transfer_res)
+static __inline void mavlink_msg_file_transfer_res_decode(const mavlink_message_t* msg, mavlink_file_transfer_res_t* file_transfer_res)
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	file_transfer_res->transfer_uid = mavlink_msg_file_transfer_res_get_transfer_uid(msg);
